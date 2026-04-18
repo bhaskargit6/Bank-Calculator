@@ -163,7 +163,40 @@ function calculateRIDC(){
 
     renderResult(maturity, interest, tdsData);
 }
+function renderResult(maturity, interest, tdsData){
 
+    let result = document.getElementById("result");
+
+    if(!result) return;
+
+    result.innerHTML = `
+    <div class="result-line">
+        <span>Maturity Amount</span>
+        <span>₹${formatINR(maturity)}</span>
+    </div>
+
+    <div class="result-line">
+        <span>Interest Earned</span>
+        <span>₹${formatINR(interest)}</span>
+    </div>
+
+    <div class="result-line">
+        <span>Status</span>
+        <span>${tdsData.status}</span>
+    </div>
+
+    ${tdsMode==="on" && tdsData.tds>0 ? `
+    <div class="result-line">
+        <span>TDS (${tdsData.rate}%)</span>
+        <span>₹${formatINR(tdsData.tds)}</span>
+    </div>
+
+    <div class="result-line">
+        <span>Net Interest</span>
+        <span>₹${formatINR(tdsData.net)}</span>
+    </div>` : ""}
+    `;
+}
 
 // ======================
 // MIDR
