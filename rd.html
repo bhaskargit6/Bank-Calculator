@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RD Calculator</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+    <span class="back" onclick="goBack()">←</span>
+    RD Calculator
+</div>
+
+<div class="section">
+
+<!-- =========================
+     INPUT CARD
+========================= -->
+<div class="surface">
+
+<div class="header-row">
+    <div>
+        <div class="title">Recurring Deposit</div>
+        <div class="subtitle">Monthly Investment Growth</div>
+    </div>
+    <div class="chip" id="rateDisplay">--</div>
+</div>
+
+<!-- MONTHLY DEPOSIT -->
+<label>Monthly Deposit (₹)</label>
+<input id="monthly" type="number" placeholder="e.g. 2000">
+
+<!-- SENIOR -->
+<label>Senior Citizen</label>
+<div class="segmented">
+    <button id="seniorNo" class="seg active" onclick="setSenior('no')">No</button>
+    <button id="seniorYes" class="seg" onclick="setSenior('yes')">Yes</button>
+</div>
+
+<!-- DURATION -->
+<label>Duration</label>
+<div class="row">
+    <input id="duration" type="number" placeholder="e.g. 24">
+    <select id="unit">
+        <option value="months">Months</option>
+        <option value="days">Days</option>
+    </select>
+</div>
+
+<!-- =========================
+     TDS SECTION
+========================= -->
+<label>TDS Settings</label>
+
+<div class="segmented">
+    <button id="tdsOff" class="seg active" onclick="setTDS('off')">Off</button>
+    <button id="tdsOn" class="seg" onclick="setTDS('on')">On</button>
+</div>
+
+<div id="tdsOptions" style="display:none;">
+
+    <label>PAN Available</label>
+    <div class="segmented">
+        <button id="panYes" class="seg active" onclick="setPAN('yes')">Yes</button>
+        <button id="panNo" class="seg" onclick="setPAN('no')">No</button>
+    </div>
+
+    <label>TDS Declaration (Form 121)</label>
+    <div class="segmented">
+        <button id="formNo" class="seg active" onclick="setForm('no')">No</button>
+        <button id="formYes" class="seg" onclick="setForm('yes')">Yes</button>
+    </div>
+
+</div>
+
+<!-- BUTTONS -->
+<div class="btn-group">
+    <button class="btn outline" onclick="resetRD()">Reset</button>
+    <button class="btn primary" onclick="calculateRD()">Calculate</button>
+</div>
+
+</div>
+
+<!-- =========================
+     RESULT CARD
+========================= -->
+<div class="surface">
+
+<div class="title">Result</div>
+
+<div id="result">
+
+    <div class="result-line">
+        <span>Total Deposit</span>
+        <span>₹0</span>
+    </div>
+
+    <div class="result-line">
+        <span>Maturity Amount</span>
+        <span>₹0</span>
+    </div>
+
+    <div class="result-line">
+        <span>Total Interest</span>
+        <span>₹0</span>
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ERROR -->
+<div id="snackbar"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

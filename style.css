@@ -1,0 +1,308 @@
+/* ======================
+BASE
+====================== */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(180deg,#F6F3FB,#ECE7F6);
+}
+
+.section {
+    padding: 16px;
+}
+
+/* ======================
+BANNER
+====================== */
+.banner {
+    background: #E8DEF8;
+    padding: 18px;
+    border-radius: 18px;
+}
+
+.banner-title {
+    font-weight: 600;
+    font-size: 22px;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+}
+
+.ubtitle {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+}
+
+/* ======================
+GRID (INDEX)
+====================== */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.card {
+    background: white;
+    padding: 26px;
+    text-align: center;
+    border-radius: 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.15s;
+}
+
+.card:active {
+    transform: scale(0.96);
+}
+
+.card.disabled {
+    opacity: 0.4;
+}
+
+/* ======================
+TOPBAR
+====================== */
+.topbar {
+    position: relative;
+    padding: 18px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.back {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ======================
+SURFACE (CARD)
+====================== */
+.surface {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+/* ======================
+HEADER ROW
+====================== */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.chip {
+    background: #E8DEF8;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+/* ======================
+INPUTS
+====================== */
+label {
+    margin-top: 14px;
+    display: block;
+    font-size: 13px;
+}
+
+input, select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    margin-top: 6px;
+    border-radius: 14px;
+    border: 1.5px solid #e0e0e0;
+    background: #fafafa;
+    font-size: 16px; /* prevent zoom */
+}
+
+input::placeholder {
+    color: #999;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border: 1.5px solid #6750A4;
+    background: #fff;
+}
+
+/* ======================
+ROW (RESPONSIVE)
+====================== */
+.row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.row input {
+    flex: 1 1 60%;
+}
+
+.row select {
+    flex: 1 1 35%;
+    min-width: 110px;
+    height: 48px;
+}
+
+/* ======================
+CUSTOM SELECT ARROW
+====================== */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background: #fafafa url("data:image/svg+xml;utf8,<svg fill='%236750A4' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 12px center;
+
+    background-size: 18px;
+    padding-right: 40px;
+}
+
+/* ======================
+SEGMENTED BUTTONS
+====================== */
+.segmented {
+    display: flex;
+    flex-wrap: wrap;
+    background: #eee;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-top: 6px;
+}
+
+.seg {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+}
+
+.seg.active {
+    background: #E8DEF8;
+    color: #4a3a9c;
+    font-weight: 500;
+}
+
+/* ======================
+BUTTONS
+====================== */
+.btn-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn {
+    flex: 1;
+    padding: 16px;
+    border-radius: 28px;
+    border: none;
+    font-size: 15px;
+}
+
+.btn.primary {
+    background: #6750A4;
+    color: white;
+}
+
+.btn.outline {
+    border: 2px solid #6750A4;
+    background: transparent;
+    color: #6750A4;
+}
+
+.btn:active {
+    transform: scale(0.96);
+}
+
+/* ======================
+RESULT
+====================== */
+.result-line {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* ======================
+SNACKBAR (ERROR)
+====================== */
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    max-width: 90%;
+    background: #6750A4;
+    color: #fff;
+    text-align: center;
+    border-radius: 16px;
+    padding: 14px 16px;
+    position: fixed;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    font-size: 15px;
+    z-index: 999;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+#snackbar.show {
+    visibility: visible;
+    opacity: 1;
+    top: 36px;
+}
+
+/* ======================
+MOBILE OPTIMIZATION
+====================== */
+@media (max-width: 420px) {
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 12px;
+    }
+
+    .surface {
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    .banner {
+        padding: 16px;
+    }
+
+    .title {
+        font-size: 15px;
+    }
+
+    .btn {
+        padding: 14px;
+    }
+}
