@@ -5,15 +5,6 @@ let senior = "no";
 let tdsMode = "off";
 let panStatus = "yes";
 let form121 = "no";
-let payoutType = "monthly";
-
-
-// ======================
-// SAFE GET
-// ======================
-function el(id){
-    return document.getElementById(id);
-}
 
 
 // ======================
@@ -53,30 +44,30 @@ const table = [
 // ======================
 function setSenior(v){
     senior = v;
-    el("seniorNo")?.classList.toggle("active", v==="no");
-    el("seniorYes")?.classList.toggle("active", v==="yes");
+    seniorNo.classList.toggle("active", v==="no");
+    seniorYes.classList.toggle("active", v==="yes");
     autoRate();
 }
 
 function setTDS(v){
     tdsMode = v;
-    el("tdsOff")?.classList.toggle("active", v==="off");
-    el("tdsOn")?.classList.toggle("active", v==="on");
-    if(el("tdsOptions")) el("tdsOptions").style.display = v==="on"?"block":"none";
+    tdsOff.classList.toggle("active", v==="off");
+    tdsOn.classList.toggle("active", v==="on");
+
+    let box = document.getElementById("tdsOptions");
+    if(box) box.style.display = (v==="on") ? "block" : "none";
 }
 
 function setPAN(v){
     panStatus = v;
+    panYes.classList.toggle("active", v==="yes");
+    panNo.classList.toggle("active", v==="no");
 }
 
 function setForm(v){
     form121 = v;
-}
-
-function setPayout(v){
-    payoutType = v;
-    el("monthly")?.classList.toggle("active", v==="monthly");
-    el("quarterly")?.classList.toggle("active", v==="quarterly");
+    formYes.classList.toggle("active", v==="yes");
+    formNo.classList.toggle("active", v==="no");
 }
 
 
@@ -84,18 +75,20 @@ function setPayout(v){
 // AUTO RATE
 // ======================
 function autoRate(){
-    let d = +el("duration")?.value;
-    let unit = el("unit")?.value;
-    let display = el("rateDisplay");
+    if(!duration || !unit) return;
 
-    if(!d || !unit || !display) return;
+    let d = +duration.value;
+    if(!d){
+        rateDisplay.innerText="--";
+        return;
+    }
 
-    let days = getDays(d, unit);
+    let days = getDays(d, unit.value);
     let slab = table.find(r=>days>=r.min && days<=r.max);
 
     if(slab){
         let r = senior==="yes"?slab.s:slab.g;
-        display.innerText = r + "%";
+        rateDisplay.innerText = r + "%";
     }
 }
 
@@ -103,31 +96,33 @@ document.addEventListener("input", autoRate);
 
 
 // ======================
-// TDS
+// TDS ENGINE (FINAL)
 // ======================
 function calculateTDS(interest){
 
-    if(tdsMode==="off") return {tds:0,net:interest,status:"TDS Off"};
+    if(tdsMode === "off"){
+        return {tds:0, net:interest, status:"TDS Off"};
+    }
 
-    let threshold = senior==="yes"?100000:50000;
-    let rate = panStatus==="no"?0.20:0.10;
+    let threshold = (senior === "yes") ? 100000 : 50000;
+    let rate = (panStatus === "no") ? 0.20 : 0.10;
 
-    if(form121==="yes") return {tds:0,net:interest,status:"Form 121 Submitted"};
+    if(form121 === "yes"){
+        return {tds:0, net:interest, status:"Form 121 Submitted"};
+    }
 
-    if(interest<=threshold) return {tds:0,net:interest,status:"Below Threshold"};
+    if(interest <= threshold){
+        return {tds:0, net:interest, status:"Below Threshold"};
+    }
 
     let tds = interest * rate;
 
-    return {tds,net:interest-tds,status:"TDS Deducted",rate:rate*100};
-}
-
-
-// ======================
-// RENDER
-// ======================
-function render(html){
-    let r = el("result");
-    if(r) r.innerHTML = html;
+    return {
+        tds: tds,
+        net: interest - tds,
+        status: "TDS Deducted",
+        rate: rate * 100
+    };
 }
 
 
@@ -136,115 +131,169 @@ function render(html){
 // ======================
 function calculateRIDC(){
 
-    let P = +el("amount")?.value;
-    let D = +el("duration")?.value;
-    let unit = el("unit")?.value;
+    let P = +amount.value;
+    let D = +duration.value;
 
     if(!P) return showError("Enter deposit amount");
     if(!D) return showError("Enter duration");
 
-    let days = getDays(D, unit);
-    let slab = table.find(r=>days>=r.min && days<=r.max);
-    if(!slab) return showError("Invalid duration");
+    let days = getDays(D, unit.value);
+    let slab = table.find(r => days >= r.min && days <= r.max);
 
-    let r = senior==="yes"?slab.s:slab.g;
+    if(!slab) return showError("Duration not supported");
+
+    let r = senior === "yes" ? slab.s : slab.g;
 
     let maturity, interest;
 
-    if(days<180){
-        interest=(P*r*days)/(365*100);
-        maturity=P+interest;
+    if(days < 180){
+        interest = (P * r * days) / (365 * 100);
+        maturity = P + interest;
     } else {
-        let q=Math.floor(days/91);
-        maturity=P*Math.pow(1+r/100/4,q);
-        let rem=days-(q*91);
-        maturity+=(maturity*r*rem)/(365*100);
-        interest=maturity-P;
+        let q = Math.floor(days / 91);
+        maturity = P * Math.pow(1 + r / 100 / 4, q);
+
+        let rem = days - (q * 91);
+        maturity += (maturity * r * rem) / (365 * 100);
+
+        interest = maturity - P;
     }
 
-    let tds=calculateTDS(interest);
+    let tdsData = calculateTDS(interest);
 
-    render(`
-    <div class="result-line"><span>Maturity</span><span>₹${formatINR(maturity)}</span></div>
-    <div class="result-line"><span>Interest</span><span>₹${formatINR(interest)}</span></div>
-    <div class="result-line"><span>Status</span><span>${tds.status}</span></div>
-    `);
+    renderResult(maturity, interest, tdsData);
 }
 
 
 // ======================
 // MIDR
 // ======================
+let payoutType = "monthly";
+
+function setPayout(v){
+    payoutType = v;
+    monthly.classList.toggle("active", v==="monthly");
+    quarterly.classList.toggle("active", v==="quarterly");
+}
+
 function calculateMIDR(){
 
-    let P = +el("amount")?.value;
-    let D = +el("duration")?.value;
-    let unit = el("unit")?.value;
+    let P = +amount.value;
+    let D = +duration.value;
 
-    if(!P) return showError("Enter amount");
+    if(!P) return showError("Enter deposit amount");
     if(!D) return showError("Enter duration");
 
-    let days = getDays(D, unit);
-    let slab = table.find(r=>days>=r.min && days<=r.max);
+    let days = getDays(D, unit.value);
+    let slab = table.find(r => days >= r.min && days <= r.max);
 
-    let r = senior==="yes"?slab.s:slab.g;
-    let interest=(P*r*days)/(365*100);
+    if(!slab) return showError("Duration not supported");
 
-    let cycle=payoutType==="monthly"?30:91;
-    let payouts=Math.floor(days/cycle);
-    let per=interest/payouts;
+    let r = senior === "yes" ? slab.s : slab.g;
 
-    render(`
-    <div class="result-line"><span>Payout</span><span>₹${formatINR(per)}</span></div>
-    <div class="result-line"><span>Total Interest</span><span>₹${formatINR(interest)}</span></div>
-    `);
+    let totalInterest = (P * r * days) / (365 * 100);
+
+    let tdsData = calculateTDS(totalInterest);
+
+    let cycleDays = payoutType === "monthly" ? 30 : 91;
+    let cycles = Math.floor(days / cycleDays);
+
+    let payout = (tdsData.net) / cycles;
+
+    result.innerHTML =
+    `<div class="result-line"><span>Maturity</span><span>₹${formatINR(P)}</span></div>
+     <div class="result-line"><span>Total Interest</span><span>₹${formatINR(totalInterest)}</span></div>
+     <div class="result-line"><span>Status</span><span>${tdsData.status}</span></div>
+
+     ${tdsMode==="on" && tdsData.tds>0 ? `
+     <div class="result-line"><span>TDS (${tdsData.rate}%)</span><span>₹${formatINR(tdsData.tds)}</span></div>
+     <div class="result-line"><span>Net Interest</span><span>₹${formatINR(tdsData.net)}</span></div>` : ""}
+
+     <div class="result-line"><span>Payout</span><span>₹${formatINR(payout)}</span></div>
+     <div class="result-line"><span>No. of Payouts</span><span>${cycles}</span></div>`;
 }
 
 
 // ======================
-// RD
+// RD (WITH TDS)
 // ======================
 function calculateRD(){
 
-    let P=+el("monthly")?.value;
-    let D=+el("duration")?.value;
-    let unit=el("unit")?.value;
+    let P = +document.getElementById("monthly").value;
+    let D = +duration.value;
 
     if(!P) return showError("Enter monthly deposit");
+    if(!D) return showError("Enter duration");
 
-    let months=unit==="months"?D:Math.floor(D/30);
-    let days=getDays(D,unit);
+    let months = unit.value==="months"?D:Math.floor(D/30);
+    if(months<=0) return showError("Invalid duration");
 
-    let slab=table.find(r=>days>=r.min&&days<=r.max);
-    let r=senior==="yes"?slab.s:slab.g;
+    let days = getDays(D, unit.value);
+    let slab = table.find(r => days >= r.min && days <= r.max);
 
-    let maturity=0;
+    if(!slab) return showError("Duration not supported");
+
+    let r = senior === "yes" ? slab.s : slab.g;
+
+    let maturity = 0;
 
     for(let i=0;i<months;i++){
-        let rem=months-i;
-        maturity+=P*Math.pow(1+r/100/4,rem/3);
+        let rem = months - i;
+        let q = rem/3;
+        maturity += P * Math.pow(1 + r/100/4, q);
     }
 
-    let total=P*months;
-    let interest=maturity-total;
+    let totalDeposit = P * months;
+    let interest = maturity - totalDeposit;
 
-    render(`
-    <div class="result-line"><span>Total</span><span>₹${formatINR(total)}</span></div>
-    <div class="result-line"><span>Maturity</span><span>₹${formatINR(maturity)}</span></div>
-    <div class="result-line"><span>Interest</span><span>₹${formatINR(interest)}</span></div>
-    `);
+    let tdsData = calculateTDS(interest);
+
+    result.innerHTML =
+    `<div class="result-line"><span>Total Deposit</span><span>₹${formatINR(totalDeposit)}</span></div>
+     <div class="result-line"><span>Maturity</span><span>₹${formatINR(maturity)}</span></div>
+     <div class="result-line"><span>Interest</span><span>₹${formatINR(interest)}</span></div>
+     <div class="result-line"><span>Status</span><span>${tdsData.status}</span></div>
+
+     ${tdsMode==="on" && tdsData.tds>0 ? `
+     <div class="result-line"><span>TDS (${tdsData.rate}%)</span><span>₹${formatINR(tdsData.tds)}</span></div>
+     <div class="result-line"><span>Net Interest</span><span>₹${formatINR(tdsData.net)}</span></div>` : ""}`;
 }
 
 
 // ======================
+// RESET + ERROR
+// ======================
+function resetRIDC(){
+    amount.value="";
+    duration.value="";
+    result.innerHTML="";
+    rateDisplay.innerText="--";
+}
+
+function resetRD(){
+    document.getElementById("monthly").value="";
+    duration.value="";
+    result.innerHTML="";
+}
+
 function showError(msg){
-    let bar=el("snackbar");
+    let bar = document.getElementById("snackbar");
     if(!bar) return;
-    bar.innerText=msg;
+
+    bar.innerText = msg;
     bar.classList.add("show");
-    setTimeout(()=>bar.classList.remove("show"),2000);
+
+    setTimeout(()=>bar.classList.remove("show"),2500);
 }
 
 function goBack(){
-    history.length>1?history.back():location.href="index.html";
+
+    // If history exists → go back
+    if(window.history.length > 1){
+        window.history.back();
+    } 
+    else {
+        // fallback → home
+        window.location.href = "index.html";
+    }
 }
