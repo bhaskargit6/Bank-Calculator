@@ -175,10 +175,6 @@ if(staff === "yes"){
     r += 1.00;
 }
 
-if(staff === "yes"){
-    r += 1.00;
-}
-
     let maturity, interest;
 
     if(days < 180){
@@ -259,10 +255,6 @@ function calculateMIDR(){
     if(!slab) return showError("Duration not supported");
 
     let r = senior === "yes" ? slab.s : slab.g;
-
-if(staff === "yes"){
-    r += 1.00;
-}
 
 if(staff === "yes"){
     r += 1.00;
