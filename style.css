@@ -1,8 +1,3 @@
-/* REMOVE LINK CLICK BACKGROUND */
-a, a:focus, a:active {
-    background: transparent !important;
-    outline: none !important;
-}
 
 /* REMOVE ANDROID CLICK FLASH */
 .card {
