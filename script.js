@@ -350,5 +350,6 @@ function goBack(){
 }
 
 function refreshApp(){
-    location.reload();
+    localStorage.clear(); // optional
+    window.location.replace(window.location.href);
 }
