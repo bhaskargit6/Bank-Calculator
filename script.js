@@ -1,7 +1,3 @@
-function refreshApp(){
-    localStorage.clear(); // optional reset
-    window.location.href = window.location.pathname + "?v=" + Date.now();
-}
 // ======================
 // INTEREST TABLE
 // ======================
