@@ -119,10 +119,13 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(180deg,#F6F3FB,#ECE7F6);
+min-height: 100vh;
+display: flex;
+flex-direction: column;
 }
 
 .section {
-    padding: 16px;
+    padding: auto;
 }
 
 /* ======================
