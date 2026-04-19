@@ -45,11 +45,17 @@
 <!-- DURATION -->
 <label>Duration</label>
 <div class="row">
-    <input id="duration" type="number" placeholder="e.g. 365">
-    <select id="unit">
-        <option value="days">Days</option>
-        <option value="months">Months</option>
-    </select>
+<input id="duration" type="number" placeholder="e.g. 365">
+<select id="unit">
+    <option value="days">Days</option>
+    <option value="months">Months</option>
+    <option value="years">Years</option>
+</select> 
+<div class="input-select" onclick="openUnit()">
+    <span id="unitText">Days</span>
+    <svg viewBox="0 0 24 24">
+        <path d="M7 10l5 5 5-5z"></path>
+    </svg></div>
 </div>
 
 <!-- PAYOUT -->
@@ -126,6 +132,23 @@
 </div>
 
 </div>
+<!-- MODAL -->
+    
+<div id="unitModal" class="modal">
+<div class="modal-box">
+    
+<div class="option active" onclick="selectUnit('days','Days',this)">
+<div class="icon">
+<svg viewBox="0 0 24 24">
+<path d="M9 16.2l-3.5-3.5L4 14.2 9 19l12-12-1.5-1.5z"/></svg></div>Days</div>
+
+<div class="option" onclick="selectUnit('months','Months',this)">
+<div class="icon"><svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19l12-12-1.5-1.5z"/></svg></div>Months</div>
+
+<div class="option" onclick="selectUnit('years','Years',this)">
+<div class="icon"><svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19l12-12-1.5-1.5z"/></svg></div>Years</div>
+    
+</div></div>
 
 <!-- ERROR -->
 <div id="snackbar"></div>
