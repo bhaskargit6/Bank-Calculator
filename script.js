@@ -1,25 +1,4 @@
 // ======================
-// GLOBAL STATE
-// ======================
-let senior = "no";
-let tdsMode = "off";
-let panStatus = "yes";
-let form121 = "no";
-
-
-// ======================
-// UTIL
-// ======================
-function formatINR(val){
-    return new Intl.NumberFormat('en-IN').format(val.toFixed(2));
-}
-
-function getDays(v,u){
-    return u==="days"?v:u==="months"?v*(365/12):v*365;
-}
-
-
-// ======================
 // INTEREST TABLE
 // ======================
 const table = [
@@ -38,6 +17,40 @@ const table = [
     {min:1826,max:3650,g:6.0,s:6.5}
 ];
 
+// ======================
+// INDEX FUNCTION
+// ======================
+
+function openInterest(){  
+    window.location.href = "interest.html";  
+}  
+  
+function setScheme(val, id){  
+    localStorage.setItem("scheme", val);  
+    document.getElementById(id).innerText = val;  
+}
+
+// ======================
+// GLOBAL STATE
+// ======================
+
+let senior = "no";
+let tdsMode = "off";
+let panStatus = "yes";
+let form121 = "no";
+
+
+// ======================
+// UTIL
+// ======================
+
+function formatINR(val){
+    return new Intl.NumberFormat('en-IN').format(val.toFixed(2));
+}
+
+function getDays(v,u){
+    return u==="days"?v:u==="months"?v*(365/12):v*365;
+}
 
 // ======================
 // TOGGLES
@@ -96,8 +109,9 @@ document.addEventListener("input", autoRate);
 
 
 // ======================
-// TDS ENGINE (FINAL)
+// TDS ENGINE
 // ======================
+
 function calculateTDS(interest){
 
     if(tdsMode === "off"){
@@ -108,7 +122,7 @@ function calculateTDS(interest){
     let rate = (panStatus === "no") ? 0.20 : 0.10;
 
     if(form121 === "yes"){
-        return {tds:0, net:interest, status:"Form 121 submitted (if eligible)"};
+        return {tds:0, net:interest, status:"Form 121 Submitted"};
     }
 
     if(interest <= threshold){
@@ -129,6 +143,7 @@ function calculateTDS(interest){
 // ======================
 // RIDC
 // ======================
+
 function calculateRIDC(){
 
     let P = +amount.value;
@@ -201,6 +216,7 @@ function renderResult(maturity, interest, tdsData){
 // ======================
 // MIDR
 // ======================
+
 let payoutType = "monthly";
 
 function setPayout(v){
@@ -248,8 +264,9 @@ function calculateMIDR(){
 
 
 // ======================
-// RD (WITH TDS)
+// RD
 // ======================
+
 function calculateRD(){
 
     let P = +document.getElementById("monthly").value;
@@ -296,6 +313,7 @@ function calculateRD(){
 // ======================
 // RESET + ERROR
 // ======================
+
 function resetRIDC(){
     amount.value="";
     duration.value="";
