@@ -505,3 +505,26 @@ function refreshApp(){
 window.addEventListener("pageshow", function () {
     window.scrollTo(0, 0);
 });
+
+function openUnit(){
+    unitModal.style.display="flex";
+}
+
+function selectUnit(val,text,el){
+    document.getElementById("unit").value = val;
+    unitText.innerText = text;
+
+    document.querySelectorAll(".option").forEach(o=>o.classList.remove("active"));
+    el.classList.add("active");
+
+    unitModal.style.display="none";
+
+    autoRate();
+}
+
+unitModal.onclick = function(e){
+    if(e.target.id==="unitModal"){
+        unitModal.style.display="none";
+    }
+};
+
