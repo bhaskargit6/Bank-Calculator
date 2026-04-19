@@ -498,3 +498,10 @@ function goBack(){
 function refreshApp(){
     location.reload();
 }
+
+// ======================
+// SCROLL RESET
+// ======================
+window.addEventListener("pageshow", function () {
+    window.scrollTo(0, 0);
+});
