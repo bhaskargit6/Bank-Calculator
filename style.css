@@ -27,6 +27,8 @@ position: relative;
     
 /* invisible select over chip */
 .scheme-chip select {
+-webkit-tap-highlight-color: transparent;
+    user-select: none;
 position: absolute;
 inset: 0;
 width: 100%;
@@ -37,6 +39,8 @@ cursor: pointer;
 
 /* BUTTON CHIP */
 .chip {
+-webkit-tap-highlight-color: transparent;
+    user-select: none;
 background: #e8dcf5;
 padding: 6px 14px;
 border-radius: 20px;
