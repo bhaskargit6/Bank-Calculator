@@ -5,7 +5,20 @@
 <meta charset="UTF-8">  
 <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 <title>Bank Calculator</title>  
-<link rel="stylesheet" href="style.css">  
+<link rel="stylesheet" href="style.css">
+<script>
+function refreshApp(){
+    window.location.href = window.location.pathname + "?v=" + Date.now();
+}
+
+function setScheme(id){
+    const select = event.target;
+    const value = select.value;
+
+    document.getElementById(id).innerText = value;
+    localStorage.setItem(id, value);
+}
+</script>  
 </head> 
 <body> 
     
@@ -42,7 +55,7 @@
         <a href="midr.html" class="card">MIDR</a>  
 
         <div class="scheme-chip">  
-             <span id="schemeText1" class="label">Scheme code<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path></svg>
+             <span id="schemeText2" class="label">Scheme code<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path></svg>
              </span> 
             <select onchange="setScheme(schemeText2')">  
                 <option value="FD001 - General">FD001 • General</option>  
@@ -127,5 +140,18 @@
         <div class="chip" onclick="window.open('https://www.wbgb.bank.in/','_blank')">Link</div>  
     </div>  
     </div>
+<script>
+function refreshApp(){
+    window.location.href = window.location.pathname + "?v=" + Date.now();
+}
+
+function setScheme(id){
+    const select = event.target;
+    const value = select.value;
+
+    document.getElementById(id).innerText = value;
+    localStorage.setItem(id, value);
+}
+</script>
 </body>
 </html>
