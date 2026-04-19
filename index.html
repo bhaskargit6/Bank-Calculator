@@ -5,20 +5,7 @@
 <meta charset="UTF-8">  
 <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 <title>Bank Calculator</title>  
-<link rel="stylesheet" href="style.css">
-<script>
-function refreshApp(){
-    window.location.href = window.location.pathname + "?v=" + Date.now();
-}
-
-function setScheme(id){
-    const select = event.target;
-    const value = select.value;
-
-    document.getElementById(id).innerText = value;
-    localStorage.setItem(id, value);
-}
-</script>  
+<link rel="stylesheet" href="style.css"> 
 </head> 
 <body> 
     
@@ -27,9 +14,6 @@ function setScheme(id){
     <div class="banner-title">Bank Calculator</div>  
     <div class="subtitle">Based on West Bengal Gramin Bank</div>
 </div>
-<div class="top-actions">
-    <button class="icon-btn" onclick="refreshApp()">⟳</button>
-</div> 
     
     <!-- CALCULATORS -->
     <div class="section">  
@@ -140,18 +124,5 @@ function setScheme(id){
         <div class="chip" onclick="window.open('https://www.wbgb.bank.in/','_blank')">Link</div>  
     </div>  
     </div>
-<script>
-function refreshApp(){
-    window.location.href = window.location.pathname + "?v=" + Date.now();
-}
-
-function setScheme(id){
-    const select = event.target;
-    const value = select.value;
-
-    document.getElementById(id).innerText = value;
-    localStorage.setItem(id, value);
-}
-</script>
 </body>
 </html>
