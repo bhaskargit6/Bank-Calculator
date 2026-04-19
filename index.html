@@ -1,91 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bank Calculator</title>
 
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<!-- HEADER -->
-<div class="section">
-    <div class="banner-title">Bank Calculator</div>
-    <div class="subtitle">
-        Based on West Bengal Gramin Bank
-    </div>
-</div>
-
-<!-- CALCULATORS -->
-<div class="section">
-    <div class="grid">
-        <a href="ridc.html" class="card">RIDC</a>
-        <a href="midr.html" class="card">MIDR</a>
-        <a href="rd.html" class="card">RD</a>
-        <a href="apy.html" class="card">APY</a>
-    </div>
-</div>
-
-<!-- INTEREST TABLE -->
-<div class="section">
-    <div class="header-row">
-        <div class="title">Latest Interest Table</div>
-        <div class="chip" onclick="openInterest()">View</div>
-    </div>
-    <div class="ubtitle">Used for all term deposits calculations</div> 
-</div>
-
-<!-- FEEDBACK BUTTON (NEW) -->
-<div class="section">
-    <div class="header-row">
-        <div class="title">Feedback</div>
-        <div class="chip" onclick="location.href='feedback.html'">Send</div>
-    </div>
-</div>
-
-<!-- ABOUT -->
-<div class="section">
-    <div class="banner">
-        <div class="title">About</div>
-        <div class="ubtitle">
-            - Auto-updated interest table based on WBGB circular <br>
-            dated 10-04-2026
-            <br>- Added Form 121 submission option
-            <br>- Crafted with 𖹭 by Bhaskar Mondal
-        </div>
-    </div>
-</div>
-
-<!-- IMPORTANT LINKS -->
-<div class="section">
-    <div class="header-row">
-        <div class="title">WBGB HRMS</div>
-        <div class="chip" onclick="window.open('https://hrms.wbgb.bank.in:7506/WBGB/Login','_blank')">Link</div>
-    </div>
-</div>
-
-<div class="section">
-    <div class="header-row">
-        <div class="title">WBGB Circular</div>
-        <div class="chip" onclick="window.open('https://drive.google.com/drive/folders/1fTRfM4CqUoirLGzzQ8wpscdkHzXGnoaH','_blank')">Link</div>
-    </div>
-</div>
-
-<div class="section">
-    <div class="header-row">
-        <div class="title">WBGB Official Website</div>
-        <div class="chip" onclick="window.open('https://www.wbgb.bank.in/','_blank')">Link</div>
-    </div>
-</div>
-
-<!-- SCRIPT -->
-<script>
-function openInterest(){
-    window.location.href = "interest.html";
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Bank Calculator</title>  
+<link rel="stylesheet" href="style.css">  
+<style>  /* CARD */
+.card-wrapper {
+position: relative;
 }
-</script>
 
-</body>
+.card {
+display: block;
+background: #fff;
+border-radius: 20px;
+padding: 28px;
+text-align: left;
+font-size: 18px;
+text-decoration: none;
+color: #000;
+}
+
+/* invisible select over chip */
+.scheme-chip select {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+opacity: 0;
+cursor: pointer;
+}
+
+/* BUTTON CHIP */
+.chip {
+background: #e8dcf5;
+padding: 6px 14px;
+border-radius: 20px;
+font-size: 12px;
+color: #6b4fa3;
+cursor: pointer;
+}
+
+</style>  </head>  <body>  <!-- HEADER -->  <div class="section">  
+    <div class="banner-title">Bank Calculator</div>  
+    <div class="subtitle">Based on West Bengal Gramin Bank</div>  
+</div>  <!-- CALCULATORS -->  <div class="section">  
+    <div class="grid">  <!-- RIDC -->  
+    <div class="card-wrapper">  
+        <a href="ridc.html" class="card">RIDC</a>  
+
+        <div class="scheme-chip">  
+            <span id="schemeText1">Scheme code ▼</span>  
+            <select onchange="setScheme('schemeText1')">  
+                <option value="TD001 - General">FD001 - General</option>  
+                <option value="TD002 - Staff">FD002 - Staff</option>  
+                <option value="TD003 - Senior Citizen">FD003 - Senior Citizen</option> 
+                <option value="TD004 - Ex-Staff Senior Citizen">FD004 - Ex-Staff Senior Citizen</option>  
+            </select>  
+        </div>  
+    </div>  
+
+    <!-- MIDR -->  
+    <div class="card-wrapper">  
+        <a href="midr.html" class="card">MIDR</a>  
+
+        <div class="scheme-chip">  
+            <span id="schemeText2">Scheme code ▼</span>  
+            <select onchange="setScheme(schemeText2')">  
+                <option value="FD001 - General">FD001 - General</option>  
+                <option value="FD002 - Staff">FD002 - Staff</option>  
+                <option value="FD003 - Senior Citizen">FD003 - Senior Citizen</option> 
+                <option value="FD004 - Ex-Staff Senior Citizen">FD004 - Ex-Staff Senior Citizen</option>
+            </select>  
+        </div>  
+    </div>  
+
+    <!-- RD -->  
+    <div class="card-wrapper">  
+        <a href="rd.html" class="card">Recurring Deposit</a>  
+
+        <div class="scheme-chip">  
+            <span id="schemeText3">Scheme code ▼</span>  
+            <select onchange="setScheme('schemeText3')">  
+                <option value="RDNEW">RDNEW - General</option>  
+                <option value="RDNST">RDNST - Staff</option>  
+                <option value="RDSCP - Senior Citizen">RDSCP - Senior Citizen</option> 
+                <option value="RDSTS - Ex-Staff Senior Citizen">RDSTS - Ex-Staff Senior Citizen</option>
+            </select>  
+        </div>  
+    </div>  
+
+    <!-- APY -->  
+     <div class="card-wrapper">  
+        <a href="apy.html" class="card">Atal Pension Yojana</a>  
+
+        <div class="scheme-chip">  
+            <span id="schemeText3">18 to 40 years</span>  
+        </div>  
+    </div>   
+
+</div>
+
+</div>  <!-- INTEREST TABLE -->  <div class="section">  
+    <div class="header-row">  
+        <div class="title">Latest Interest Table</div>  
+        <div class="chip" onclick="openInterest()">View</div>  
+    </div>  
+    <div class="ubtitle">Used for all term deposits calculations</div>  
+</div>  <!-- FEEDBACK -->  <div class="section">  
+    <div class="header-row">  
+        <div class="title">Feedback</div>  
+        <div class="chip" onclick="location.href='feedback.html'">Send</div>  
+    </div>  
+</div>  <!-- ABOUT -->  <div class="section">  
+    <div class="banner">  
+        <div class="title">About</div>  
+        <div class="ubtitle">  
+            - Auto-updated interest table based on WBGB circular <br>  
+            dated 10-04-2026  
+            <br>- Added Form 121 submission option  
+            <br>- Crafted with ♡ by Bhaskar Mondal  
+        </div>  
+    </div>  
+</div>  <!-- LINKS -->  <div class="section">  
+    <div class="header-row">  
+        <div class="title">WBGB HRMS</div>  
+        <div class="chip" onclick="window.open('https://hrms.wbgb.bank.in:7506/WBGB/Login','_blank')">Link</div>  
+    </div>  
+</div>  <div class="section">  
+    <div class="header-row">  
+        <div class="title">WBGB Circular</div>  
+        <div class="chip" onclick="window.open('https://drive.google.com/drive/folders/1fTRfM4CqUoirLGzzQ8wpscdkHzXGnoaH','_blank')">Link</div>  
+    </div>  
+</div>  <div class="section">  
+    <div class="header-row">  
+        <div class="title">WBGB Official Website</div>  
+        <div class="chip" onclick="window.open('https://www.wbgb.bank.in/','_blank')">Link</div>  
+    </div>  
+</div>  <script>  
+function openInterest(){  
+    window.location.href = "interest.html";  
+}  
+  
+function setScheme(val, id){  
+    localStorage.setItem("scheme", val);  
+    document.getElementById(id).innerText = val;  
+}  
+</script>  </body>  
 </html>
