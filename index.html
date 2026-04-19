@@ -1,126 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>Bank Calculator</title>  
-<link rel="stylesheet" href="style.css"> 
-</head> 
-<body> 
-    
-    <!-- HEADER -->  
-    <div class="section">
-    <div class="banner-title">Calculator</div>  
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bank Calculator</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* Optional: keep slight disabled look */
+.option{
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="section">
+    <div class="banner-title">Bank Calculator</div>
     <div class="subtitle">Based on West Bengal Gramin Bank</div>
 </div>
-    
-    <!-- CALCULATORS -->
-    <div class="section">  
-    <div class="grid"> 
-        
-        <!-- RIDC -->  
-    <div class="card-wrapper">  
-        <a href="ridc.html" class="card">RIDC</a>  
-        <div class="scheme-chip">  
-            <span id="schemeText1" class="label">Scheme code<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path></svg>       
-            </span>  
-            <select onchange="setScheme('schemeText1')">  
-                <option value="TD001 - General">TD001 • General</option>  
-                <option value="TD002 - Staff">TD002 • Staff</option>  
-                <option value="TD003 - Senior Citizen">TD003 • Senior Citizen</option> 
-                <option value="TD004 - Ex-Staff Senior Citizen">TD004 • Ex-Staff Senior Citizen</option>  
-            </select>  
-        </div>  
-    </div>  
-        
-    <!-- MIDR -->  
-    <div class="card-wrapper">  
-        <a href="midr.html" class="card">MIDR</a>  
 
-        <div class="scheme-chip">  
-             <span id="schemeText2" class="label">Scheme code<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path></svg>
-             </span> 
-            <select onchange="setScheme(schemeText2')">  
-                <option value="FD001 - General">FD001 • General</option>  
-                <option value="FD002 - Staff">FD002 • Staff</option>  
-                <option value="FD003 - Senior Citizen">FD003 • Senior Citizen</option> 
-                <option value="FD004 - Ex-Staff Senior Citizen">FD004 • Ex-Staff Senior Citizen</option>
-            </select>  
-        </div>  
-    </div>  
+<!-- CALCULATORS -->
+<div class="section">
+<div class="grid">
 
-    <!-- RD -->  
-    <div class="card-wrapper">  
-        <a href="rd.html" class="card">Recurring Deposit</a>  
-        <div class="scheme-chip">  
-             <span id="schemeText1" class="label">Scheme code<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path></svg>
-             </span> 
-            <select onchange="setScheme('schemeText3')">  
-                <option value="RDNEW">RDNEW • General</option>  
-                <option value="RDNST">RDNST • Staff</option>  
-                <option value="RDSCP - Senior Citizen">RDSCP • Senior Citizen</option> 
-                <option value="RDSTS - Ex-Staff Senior Citizen">RDSTS • Ex-Staff Senior Citizen</option>
-            </select>  
-        </div>  
-    </div>  
+    <!-- RIDC -->
+    <div class="card-wrapper">
+        <a href="ridc.html" class="card">RIDC</a>
 
-    <!-- APY -->  
-     <div class="card-wrapper">  
-        <a href="apy.html" class="card">Atal Pension Yojana</a>  
-        <div class="scheme-chip">  
-            <span class="label">‎ ‎ ‎ ‎18 to 40 years‎ ‎ ‎</span>  
-        </div>  
-    </div>   
-</div>
-</div>
-    
-    <!-- INTEREST TABLE --> 
-    <div class="section">  
-    <div class="header-row">  
-        <div class="title">Latest Interest Table</div>  
-        <div class="chip" onclick="location.href='interest.html'">View</div>  
-    </div>  
-    <div class="ubtitle">Last updated on 16-04-2026</div>  
-</div>
-    
-    <!-- FEEDBACK -->
-    <div class="section">  
-    <div class="header-row">  
-        <div class="title">Feedback</div>  
-        <div class="chip" onclick="location.href='feedback.html'">Send</div>  
-    </div>  
-</div>
-    
-    <!-- CHANGELOGS -->
-    <div class="section">  
-    <div class="banner">  
-        <div class="title">Changelogs</div>  
-        <div class="ubtitle">  
-            - Auto-updated interest table based on the WBGB circular effective from 16-04-2026  
-            <br>- Added Staff interest, and TDS settings
-            <br>- Crafted with ♡ by Bhaskar Mondal  
-        </div>  
-    </div>  
-</div>
-    
-    <!-- LINKS -->
-    <div class="section">  
-    <div class="header-row">  
-        <div class="title">WBGB HRMS</div>  
-        <div class="chip" onclick="window.open('https://hrms.wbgb.bank.in:7506/WBGB/Login.aspx','_blank')">Link</div>  
-    </div>  
-</div>
-    <div class="section">
-    <div class="header-row">
-        <div class="title">WBGB Circular</div>  
-        <div class="chip" onclick="window.open('https://drive.google.com/drive/folders/1fTRfM4CqUoirLGzzQ8wpscdkHzXGnoaH','_blank')">Link</div>  
-    </div>  
-</div>
-    <div class="section">  
-    <div class="header-row">  
-        <div class="title">WBGB Official Website</div>  
-        <div class="chip" onclick="window.open('https://www.wbgb.bank.in/','_blank')">Link</div>  
-    </div>  
+        <div class="scheme-chip" onclick="openScheme('RIDC')">
+            <span class="label">
+                Scheme code
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5z"></path>
+                </svg>
+            </span>
+        </div>
     </div>
+
+    <!-- MIDR -->
+    <div class="card-wrapper">
+        <a href="midr.html" class="card">MIDR</a>
+
+        <div class="scheme-chip" onclick="openScheme('MIDR')">
+            <span class="label">
+                Scheme code
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5z"></path>
+                </svg>
+            </span>
+        </div>
+    </div>
+
+    <!-- RD -->
+    <div class="card-wrapper">
+        <a href="rd.html" class="card">Recurring Deposit</a>
+
+        <div class="scheme-chip" onclick="openScheme('RD')">
+            <span class="label">
+                Scheme code
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5z"></path>
+                </svg>
+            </span>
+        </div>
+    </div>
+
+    <!-- APY -->
+    <div class="card-wrapper">
+        <a href="apy.html" class="card">Atal Pension Yojana</a>
+
+        <div class="scheme-chip">
+            <span class="label">18 to 40 years</span>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<!-- INTEREST -->
+<div class="section">
+    <div class="header-row">
+        <div class="title">Latest Interest Table</div>
+        <div class="chip" onclick="location.href='interest.html'">View</div>
+    </div>
+    <div class="ubtitle">Used for all term deposits calculations</div>
+</div>
+
+<!-- FEEDBACK -->
+<div class="section">
+    <div class="header-row">
+        <div class="title">Feedback</div>
+        <div class="chip" onclick="location.href='feedback.html'">Send</div>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+    <div class="banner">
+        <div class="title">About</div>
+        <div class="ubtitle">
+            - Auto-updated interest table based on WBGB circular <br>
+            dated 10-04-2026  
+            <br>- Added Staff interest & TDS settings  
+            <br>- Crafted with ♡ by Bhaskar Mondal
+        </div>
+    </div>
+</div>
+
+<!-- LINKS -->
+<div class="section">
+    <div class="header-row">
+        <div class="title">WBGB HRMS</div>
+        <div class="chip" onclick="window.open('https://hrms.wbgb.bank.in:7506/WBGB/Login.aspx','_blank')">Link</div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="header-row">
+        <div class="title">WBGB Circular</div>
+        <div class="chip" onclick="window.open('https://drive.google.com/drive/folders/1fTRfM4CqUoirLGzzQ8wpscdkHzXGnoaH','_blank')">Link</div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="header-row">
+        <div class="title">WBGB Official Website</div>
+        <div class="chip" onclick="window.open('https://www.wbgb.bank.in/','_blank')">Link</div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div id="schemeModal" class="modal-home">
+    <div class="modal-box-home" id="schemeList"></div>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+const schemeData = {
+
+    RIDC: [
+        "<strong>TD001</strong> •    General",
+        "TD002 • Staff",
+        "TD003 • Senior Citizen",
+        "TD004 • Ex-Staff Senior Citizen"
+    ],
+
+    MIDR: [
+        "FD001 • General",
+        "FD002 • Staff",
+        "FD003 • Senior Citizen",
+        "FD004 • Ex-Staff Senior Citizen"
+    ],
+
+    RD: [
+        "RDNEW • General",
+        "RDNST • Staff",
+        "RDSCP • Senior Citizen",
+        "RDSTS • Ex-Staff Senior Citizen"
+    ]
+};
+
+function openScheme(type){
+
+    let html = "";
+
+    schemeData[type].forEach(val => {
+        html += `<div class="option" onclick="closeScheme()">${val}</div>`;
+    });
+
+    document.getElementById("schemeList").innerHTML = html;
+
+    schemeModal.style.display = "flex";
+}
+
+function closeScheme(){
+    schemeModal.style.display = "none";
+}
+
+/* CLOSE ON OUTSIDE TAP */
+schemeModal.onclick = function(e){
+    if(e.target.id === "schemeModal"){
+        closeScheme();
+    }
+};
+
+</script>
+
 </body>
 </html>
