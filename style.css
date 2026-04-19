@@ -1,3 +1,14 @@
+/* REMOVE ANDROID BLUE TAP HIGHLIGHT */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* EXTRA SAFETY FOR CLICKABLE ELEMENTS */
+a, button, .card, .scheme-chip {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
 .card-wrapper {
 position: relative;
 }
