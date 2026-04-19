@@ -1,3 +1,25 @@
+/* REMOVE LINK CLICK BACKGROUND */
+a, a:focus, a:active {
+    background: transparent !important;
+    outline: none !important;
+}
+
+/* REMOVE ANDROID CLICK FLASH */
+.card {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+/* FORCE NO SELECTION */
+* {
+    -webkit-touch-callout: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .card-wrapper {
 position: relative;
 }
