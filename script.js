@@ -1,3 +1,7 @@
+function refreshApp(){
+    localStorage.clear(); // optional reset
+    window.location.href = window.location.pathname + "?v=" + Date.now();
+}
 // ======================
 // INTEREST TABLE
 // ======================
@@ -347,10 +351,4 @@ function goBack(){
         // fallback → home
         window.location.href = "index.html";
     }
-}
-
-function refreshApp(){
-    localStorage.clear(); // optional
-alert("clicked");
-    window.location.replace(window.location.href);
 }
