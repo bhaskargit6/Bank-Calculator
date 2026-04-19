@@ -351,5 +351,6 @@ function goBack(){
 
 function refreshApp(){
     localStorage.clear(); // optional
+alert("clicked");
     window.location.replace(window.location.href);
 }
