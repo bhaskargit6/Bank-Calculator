@@ -1,3 +1,7 @@
+webView.setBackgroundColor(Color.TRANSPARENT);
+webView.setFocusable(false);
+webView.setFocusableInTouchMode(false);
+
 // ======================
 // INTEREST TABLE
 // ======================
