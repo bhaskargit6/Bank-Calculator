@@ -1,15 +1,9 @@
-
-/* REMOVE ANDROID CLICK FLASH */
-.card {
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-}
-
-
 .card-wrapper {
 position: relative;
 }
 .card {
+-webkit-tap-highlight-color: transparent;
+    user-select: none;
     background: #FFF;
     padding: 28px;
     text-align: left;
