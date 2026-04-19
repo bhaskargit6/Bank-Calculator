@@ -108,7 +108,7 @@ function calculateTDS(interest){
     let rate = (panStatus === "no") ? 0.20 : 0.10;
 
     if(form121 === "yes"){
-        return {tds:0, net:interest, status:"Form 121 Submitted"};
+        return {tds:0, net:interest, status:"Form 121 submitted (if eligible)"};
     }
 
     if(interest <= threshold){
