@@ -11,71 +11,76 @@
 
 <body>
 
-<!-- HEADER / BANNER -->
+<!-- HEADER -->
 <div class="section">
-        <div class="banner-title">Bank Calculator</div>
-        <div class="subtitle">
-            Based on West Bengal Gramin Bank
-        </div>
+    <div class="banner-title">Bank Calculator</div>
+    <div class="subtitle">
+        Based on West Bengal Gramin Bank
+    </div>
 </div>
 
 <!-- CALCULATORS -->
 <div class="section">
-        <div class="grid">
-            <a href="ridc.html" class="card">RIDC</a>
-            <a href="midr.html" class="card">MIDR</a>
-            <a href="rd.html" class="card">RD</a>
-            <a href="apy.html" class="card">APY</a>
+    <div class="grid">
+        <a href="ridc.html" class="card">RIDC</a>
+        <a href="midr.html" class="card">MIDR</a>
+        <a href="rd.html" class="card">RD</a>
+        <a href="apy.html" class="card">APY</a>
     </div>
 </div>
 
 <!-- INTEREST TABLE -->
-    
 <div class="section">
-        <div class="header-row">
-            
-                
-                <div class="title">Latest Interest Table</div>
-                
-                  <div class="chip" id="rateDisplay" onclick="openInterest()">‎ ‎ ‎ ‎ View‎‎ ‎ ‎‎  ‎ </div>
-                
-            
-        
-    </div><div class="ubtitle">Used for all term deposits calculations</div> 
+    <div class="header-row">
+        <div class="title">Latest Interest Table</div>
+        <div class="chip" onclick="openInterest()">View</div>
+    </div>
+    <div class="ubtitle">Used for all term deposits calculations</div> 
 </div>
 
-<!-- FOOTER / SUPPORT -->
+<!-- FEEDBACK BUTTON (NEW) -->
 <div class="section">
-    <div class="banner">
-
-        <div class="title">About</div>
-        <div class="ubtitle">
-    - Auto-updated interest table based on WBGB circular <br>dated 10-04-2026
-    <br>- Added Form 121 submission option
-    
-    <br>- Crafted with 𖹭 by Bhaskar Mondal
-</div>
-
+    <div class="header-row">
+        <div class="title">Feedback</div>
+        <div class="chip" onclick="location.href='feedback.html'">Send</div>
     </div>
 </div>
+
+<!-- ABOUT -->
 <div class="section">
-        <div class="header-row">                
-                <div class="title">WBGB HRMS</div>                
-                  <div class="chip" id="rateDisplay" onclick="window.open('https://hrms.wbgb.bank.in:7506/WBGB/Login', '_blank')">‎ ‎ Link ‎ ‎ ‎ </div>
-            </div>
+    <div class="banner">
+        <div class="title">About</div>
+        <div class="ubtitle">
+            - Auto-updated interest table based on WBGB circular <br>
+            dated 10-04-2026
+            <br>- Added Form 121 submission option
+            <br>- Crafted with 𖹭 by Bhaskar Mondal
+        </div>
+    </div>
 </div>
+
+<!-- IMPORTANT LINKS -->
 <div class="section">
-        <div class="header-row">                
-                <div class="title">WBGB Circular</div>                
-                  <div class="chip" id="rateDisplay" onclick="window.open('https://drive.google.com/drive/folders/1fTRfM4CqUoirLGzzQ8wpscdkHzXGnoaH')">‎ ‎ ‎ Link ‎ ‎ ‎ </div>
-            </div>
+    <div class="header-row">
+        <div class="title">WBGB HRMS</div>
+        <div class="chip" onclick="window.open('https://hrms.wbgb.bank.in:7506/WBGB/Login','_blank')">Link</div>
+    </div>
 </div>
+
 <div class="section">
-        <div class="header-row">                
-                <div class="title">WBGB Official Website</div>                
-                  <div class="chip" id="rateDisplay" onclick="window.open('https://www.wbgb.bank.in/')">‎ ‎ ‎ Link ‎ ‎ ‎ </div>
-                
-            
+    <div class="header-row">
+        <div class="title">WBGB Circular</div>
+        <div class="chip" onclick="window.open('https://drive.google.com/drive/folders/1fTRfM4CqUoirLGzzQ8wpscdkHzXGnoaH','_blank')">Link</div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="header-row">
+        <div class="title">WBGB Official Website</div>
+        <div class="chip" onclick="window.open('https://www.wbgb.bank.in/','_blank')">Link</div>
+    </div>
+</div>
+
 <!-- SCRIPT -->
 <script>
 function openInterest(){
