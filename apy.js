@@ -128,7 +128,7 @@ function calculateAPY(){
      </div>
      <div class="result-line">
         <span>Amount to Nominee</span>
-        <span>₹2,00,000</span>
+        <span>₹1,70,000</span>
      </div>`;
 }
 
