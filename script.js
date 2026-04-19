@@ -45,6 +45,19 @@ let staff = "no";
 // UTIL
 // ======================
 
+function getMaturityDate(value, unit){
+    let d = new Date();
+
+    if(unit === "days") d.setDate(d.getDate() + Number(value));
+    if(unit === "months") d.setMonth(d.getMonth() + Number(value));
+    if(unit === "years") d.setFullYear(d.getFullYear() + Number(value));
+
+    const day = d.getDate();
+    const month = d.toLocaleString("en-GB", { month: "long" });
+    const year = d.getFullYear();
+    return `${day} ${month}, ${year}`;
+}
+
 function formatINR(val){
     return new Intl.NumberFormat('en-IN').format(val.toFixed(2));
 }
@@ -192,41 +205,47 @@ if(staff === "yes"){
 
     let tdsData = calculateTDS(interest);
 
-    renderResult(maturity, interest, tdsData);
+    let maturityDate = getMaturityDate(D, unit.value);
+renderResult(maturity, interest, tdsData, maturityDate);
 }
-function renderResult(maturity, interest, tdsData){
+function renderResult(maturity, interest, tdsData, maturityDate){
 
     let result = document.getElementById("result");
 
     if(!result) return;
 
     result.innerHTML = `
-    <div class="result-line">
-        <span>Maturity Amount</span>
-        <span>₹${formatINR(maturity)}</span>
-    </div>
 
-    <div class="result-line">
-        <span>Interest Earned</span>
-        <span>₹${formatINR(interest)}</span>
-    </div>
+<div class="maturity-chip">
+    <strong>Maturity:</strong> ${maturityDate}
+</div>
 
-    <div class="result-line">
-        <span>Status</span>
-        <span>${tdsData.status}</span>
-    </div>
+<div class="result-line">
+    <span>Maturity Amount</span>
+    <span>₹${formatINR(maturity)}</span>
+</div>
 
-    ${tdsMode==="on" && tdsData.tds>0 ? `
-    <div class="result-line">
-        <span>TDS (${tdsData.rate}%)</span>
-        <span>₹${formatINR(tdsData.tds)}</span>
-    </div>
+<div class="result-line">
+    <span>Interest Earned</span>
+    <span>₹${formatINR(interest)}</span>
+</div>
 
-    <div class="result-line">
-        <span>Net Interest</span>
-        <span>₹${formatINR(tdsData.net)}</span>
-    </div>` : ""}
-    `;
+<div class="result-line">
+    <span>Status</span>
+    <span>${tdsData.status}</span>
+</div>
+
+${tdsMode==="on" && tdsData.tds>0 ? `
+<div class="result-line">
+    <span>TDS (${tdsData.rate}%)</span>
+    <span>₹${formatINR(tdsData.tds)}</span>
+</div>
+
+<div class="result-line">
+    <span>Net Interest</span>
+    <span>₹${formatINR(tdsData.net)}</span>
+</div>` : ""}
+`;
 }
 
 // ======================
@@ -269,17 +288,50 @@ if(staff === "yes"){
 
     let payout = (tdsData.net) / cycles;
 
-    result.innerHTML =
-    `<div class="result-line"><span>Maturity</span><span>₹${formatINR(P)}</span></div>
-     <div class="result-line"><span>Total Interest</span><span>₹${formatINR(totalInterest)}</span></div>
-     <div class="result-line"><span>Status</span><span>${tdsData.status}</span></div>
+    let maturityDate = getMaturityDate(D, unit.value);
 
-     ${tdsMode==="on" && tdsData.tds>0 ? `
-     <div class="result-line"><span>TDS (${tdsData.rate}%)</span><span>₹${formatINR(tdsData.tds)}</span></div>
-     <div class="result-line"><span>Net Interest</span><span>₹${formatINR(tdsData.net)}</span></div>` : ""}
+result.innerHTML = `
 
-     <div class="result-line"><span>Payout</span><span>₹${formatINR(payout)}</span></div>
-     <div class="result-line"><span>No. of Payouts</span><span>${cycles}</span></div>`;
+<div class="maturity-chip">
+    <strong>Maturity:</strong> ${maturityDate}
+</div>
+
+<div class="result-line">
+    <span>Maturity</span>
+    <span>₹${formatINR(P)}</span>
+</div>
+
+<div class="result-line">
+    <span>Total Interest</span>
+    <span>₹${formatINR(totalInterest)}</span>
+</div>
+
+<div class="result-line">
+    <span>Status</span>
+    <span>${tdsData.status}</span>
+</div>
+
+${tdsMode==="on" && tdsData.tds>0 ? `
+<div class="result-line">
+    <span>TDS (${tdsData.rate}%)</span>
+    <span>₹${formatINR(tdsData.tds)}</span>
+</div>
+
+<div class="result-line">
+    <span>Net Interest</span>
+    <span>₹${formatINR(tdsData.net)}</span>
+</div>` : ""}
+
+<div class="result-line">
+    <span>Payout</span>
+    <span>₹${formatINR(payout)}</span>
+</div>
+
+<div class="result-line">
+    <span>No. of Payouts</span>
+    <span>${cycles}</span>
+</div>
+`;
 }
 
 
@@ -321,16 +373,44 @@ if(staff === "yes"){
     let interest = maturity - totalDeposit;
 
     let tdsData = calculateTDS(interest);
+    let maturityDate = getMaturityDate(D, unit.value);
+    result.innerHTML = `
 
-    result.innerHTML =
-    `<div class="result-line"><span>Total Deposit</span><span>₹${formatINR(totalDeposit)}</span></div>
-     <div class="result-line"><span>Maturity</span><span>₹${formatINR(maturity)}</span></div>
-     <div class="result-line"><span>Interest</span><span>₹${formatINR(interest)}</span></div>
-     <div class="result-line"><span>Status</span><span>${tdsData.status}</span></div>
+<div class="maturity-chip">
+    <strong>Maturity:</strong> ${maturityDate}
+</div>
 
-     ${tdsMode==="on" && tdsData.tds>0 ? `
-     <div class="result-line"><span>TDS (${tdsData.rate}%)</span><span>₹${formatINR(tdsData.tds)}</span></div>
-     <div class="result-line"><span>Net Interest</span><span>₹${formatINR(tdsData.net)}</span></div>` : ""}`;
+<div class="result-line">
+    <span>Total Deposit</span>
+    <span>₹${formatINR(totalDeposit)}</span>
+</div>
+
+<div class="result-line">
+    <span>Maturity</span>
+    <span>₹${formatINR(maturity)}</span>
+</div>
+
+<div class="result-line">
+    <span>Interest</span>
+    <span>₹${formatINR(interest)}</span>
+</div>
+
+<div class="result-line">
+    <span>Status</span>
+    <span>${tdsData.status}</span>
+</div>
+
+${tdsMode==="on" && tdsData.tds>0 ? `
+<div class="result-line">
+    <span>TDS (${tdsData.rate}%)</span>
+    <span>₹${formatINR(tdsData.tds)}</span>
+</div>
+
+<div class="result-line">
+    <span>Net Interest</span>
+    <span>₹${formatINR(tdsData.net)}</span>
+</div>` : ""}
+`;
 }
 
 
