@@ -36,19 +36,20 @@
 
 /* ===== MODAL ===== */
 .modal{
-    position:fixed;
+    position:absolute;
     inset:0;
     background:rgba(0,0,0,0.3);
     display:none;
     align-items:center;
-    justify-content:center;
+    justify-content:right;
+    padding:12px;
     z-index:1000;
 }
 
 .modal-box{
     background:#fff;
     border-radius:20px;
-    width:85%;
+    width:50%;
     max-width:320px;
     padding:10px;
 }
