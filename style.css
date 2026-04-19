@@ -1,3 +1,19 @@
+.top-actions{
+    position:absolute;
+    top:16px;
+    right:16px;
+}
+
+.icon-btn{
+    background:#e8dcf5;
+    border:none;
+    padding:8px 12px;
+    border-radius:50%;
+    font-size:16px;
+    color:#6b4fa3;
+    cursor:pointer;
+}
+
 /* GLOBAL TOUCH FIX */
 html, body, * {
     -webkit-tap-highlight-color: transparent;
