@@ -38,6 +38,7 @@ let senior = "no";
 let tdsMode = "off";
 let panStatus = "yes";
 let form121 = "no";
+let staff = "no";
 
 
 // ======================
@@ -83,6 +84,14 @@ function setForm(v){
     formNo.classList.toggle("active", v==="no");
 }
 
+function setStaff(v){
+    staff = v;
+
+    staffNo.classList.toggle("active", v==="no");
+    staffYes.classList.toggle("active", v==="yes");
+
+    autoRate(); // update rate instantly
+}
 
 // ======================
 // AUTO RATE
@@ -101,6 +110,9 @@ function autoRate(){
 
     if(slab){
         let r = senior==="yes"?slab.s:slab.g;
+    if(staff === "yes"){
+    r += 1.00;
+}
         rateDisplay.innerText = r + "%";
     }
 }
@@ -158,6 +170,14 @@ function calculateRIDC(){
     if(!slab) return showError("Duration not supported");
 
     let r = senior === "yes" ? slab.s : slab.g;
+
+if(staff === "yes"){
+    r += 1.00;
+}
+
+if(staff === "yes"){
+    r += 1.00;
+}
 
     let maturity, interest;
 
@@ -240,6 +260,14 @@ function calculateMIDR(){
 
     let r = senior === "yes" ? slab.s : slab.g;
 
+if(staff === "yes"){
+    r += 1.00;
+}
+
+if(staff === "yes"){
+    r += 1.00;
+}
+
     let totalInterest = (P * r * days) / (365 * 100);
 
     let tdsData = calculateTDS(totalInterest);
@@ -284,6 +312,10 @@ function calculateRD(){
     if(!slab) return showError("Duration not supported");
 
     let r = senior === "yes" ? slab.s : slab.g;
+
+if(staff === "yes"){
+    r += 1.00;
+}
 
     let maturity = 0;
 
@@ -347,4 +379,8 @@ function goBack(){
         // fallback → home
         window.location.href = "index.html";
     }
+}
+
+function refreshApp(){
+    location.reload();
 }
