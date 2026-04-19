@@ -1,14 +1,12 @@
 /* GLOBAL TOUCH FIX */
 html, body, * {
     -webkit-tap-highlight-color: transparent;
-    user-select: none;
 }
+
 .card-wrapper {
 position: relative;
 }
 .card {
--webkit-tap-highlight-color: transparent;
-    user-select: none;
     background: #FFF;
     padding: 28px;
     text-align: left;
@@ -208,8 +206,6 @@ HEADER ROW
 }
 
 .chip {
--webkit-tap-highlight-color: transparent;
-    user-select: none;
     background: #E8DEF8;
     padding: 6px 12px;
     border-radius: 20px;
