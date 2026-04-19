@@ -10,15 +10,6 @@ a, a:focus, a:active {
     user-select: none;
 }
 
-/* FORCE NO SELECTION */
-* {
-    -webkit-touch-callout: none;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
 
 .card-wrapper {
 position: relative;
