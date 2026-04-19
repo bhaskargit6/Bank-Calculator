@@ -1,4 +1,66 @@
 .card-wrapper {
+position: relative;
+}
+.card {
+    background: #FFF;
+    padding: 28px;
+    text-align: left;
+    display: block;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 510;
+    font-size: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.15s;
+}
+
+.card:active {
+    transform: scale(0.96);
+}
+
+.card.disabled {
+    opacity: 0.4;
+    }
+    
+/* invisible select over chip */
+.scheme-chip select {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+opacity: 0;
+cursor: pointer;
+}
+
+/* BUTTON CHIP */
+.chip {
+background: #e8dcf5;
+padding: 6px 14px;
+border-radius: 20px;
+font-size: 12px;
+color: #6b4fa3;
+cursor: pointer;
+}
+.label {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px; /* space between text and arrow */
+      cursor: pointer;
+    }
+
+    .label svg {
+      width: 14px;
+      height: 14px;
+        align-items: right;
+      fill: currentColor; /* matches text color */
+    }
+
+    .label:hover {
+      color: #4a2ea0;
+    }
+    
+    .card-wrapper {
     position: relative;
 }
 
@@ -43,9 +105,11 @@
     pointer-events: none; /* blocks clicks */
     cursor: not-allowed;
 }
+
 /* ======================
 BASE
 ====================== */
+
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -92,29 +156,10 @@ GRID (INDEX)
     gap: 14px;
 }
 
-.card {
-    background: white;
-    padding: 26px;
-    text-align: center;
-    border-radius: 20px;
-    text-decoration: none;
-    color: black;
-    font-weight: 500;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    transition: 0.15s;
-}
-
-.card:active {
-    transform: scale(0.96);
-}
-
-.card.disabled {
-    opacity: 0.4;
-}
-
 /* ======================
 TOPBAR
 ====================== */
+
 .topbar {
     position: relative;
     padding: 18px;
@@ -212,7 +257,7 @@ ROW (RESPONSIVE)
 }
 
 /* ======================
-CUSTOM SELECT ARROW
+ARROW DOWN SYMBOL
 ====================== */
 select {
     appearance: none;
@@ -252,9 +297,11 @@ SEGMENTED BUTTONS
     font-weight: 500;
 }
 
+
 /* ======================
 BUTTONS
 ====================== */
+
 .btn-group {
     display: flex;
     gap: 12px;
@@ -287,6 +334,7 @@ BUTTONS
 /* ======================
 RESULT
 ====================== */
+
 .result-line {
     display: flex;
     justify-content: space-between;
@@ -296,6 +344,7 @@ RESULT
 /* ======================
 SNACKBAR (ERROR)
 ====================== */
+
 #snackbar {
     visibility: hidden;
     min-width: 250px;
@@ -310,6 +359,7 @@ SNACKBAR (ERROR)
     top: 20px;
     transform: translateX(-50%);
     font-size: 15px;
+    font-weight: 510;
     z-index: 999;
     opacity: 0;
     transition: all 0.3s ease;
@@ -324,6 +374,7 @@ SNACKBAR (ERROR)
 /* ======================
 MOBILE OPTIMIZATION
 ====================== */
+
 @media (max-width: 420px) {
 
     .grid {
