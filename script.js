@@ -421,14 +421,56 @@ ${tdsMode==="on" && tdsData.tds>0 ? `
 function resetRIDC(){
     amount.value="";
     duration.value="";
-    result.innerHTML="";
     rateDisplay.innerText="--";
+    result.innerHTML=`
+    <div class="result-line">
+        <span>Maturity Amount</span>
+        <span>--</span>
+    </div>
+    <div class="result-line">
+        <span>Interest Earned</span>
+        <span>--</span>
+    </div>`;
 }
 
-function resetRD(){
-    document.getElementById("monthly").value="";
+function resetMIDR(){
+    amount.value="";
     duration.value="";
-    result.innerHTML="";
+    rateDisplay.innerText="--";
+    result.innerHTML=`
+    <div class="result-line">
+        <span>Maturity Amount</span>
+        <span>--</span>
+    </div>
+    <div class="result-line">
+        <span>Total Interest</span>
+        <span>--</span>
+    </div>
+        <div class="result-line">
+        <span>Payout</span>
+        <span>--</span>
+    </div>`;
+}
+
+
+function resetRD(){
+    document.getElementById("monthly").value = "";
+    duration.value = "";
+    rateDisplay.innerText="--";
+    result.innerHTML = `
+    <div class="result-line">
+        <span>Total Deposit</span>
+        <span>--</span>
+    </div>
+    <div class="result-line">
+        <span>Maturity Amount</span>
+        <span>--</span>
+    </div>
+    <div class="result-line">
+        <span>Total Interest</span>
+        <span>--</span>
+    </div>
+    `;
 }
 
 function showError(msg){
