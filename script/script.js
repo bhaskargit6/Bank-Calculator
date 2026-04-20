@@ -70,6 +70,7 @@ function calculateRIDC(){
     let D = +duration.value;
     if(!P) return showError("Enter deposit amount");
     if(!D) return showError("Enter duration");
+    let unitVal = document.getElementById("unit").value;
     let days = getDays(D, unit.value);
     let r = getRate(days);
 if(!r){
@@ -88,6 +89,10 @@ if(!r){
     }
     let tdsData = calculateTDS(interest);
     result.innerHTML = `
+<div class="maturity-chip">
+<strong>Maturity</strong> :‎ ‎ ${getMaturityDate(D, unitVal)}
+</div>
+
 ${tdsData.applicable ? `
 <div class="result-line">
 <span>Maturity (Without TDS)</span>
@@ -129,10 +134,9 @@ scrollToResult();
 function calculateMIDR(){
     let P = +amount.value;
     let D = +duration.value;
-
     if(!P) return showError("Enter deposit amount");
     if(!D) return showError("Enter duration");
-
+    let unitVal = document.getElementById("unit").value;
     let days = getDays(D, unit.value);
     let r = getRate(days);
 if(!r){
@@ -141,10 +145,13 @@ if(!r){
 
     let interest = (P*r*days)/(365*100);
     let tdsData = calculateTDS(interest);
-
-    let cycles = Math.floor(days/(payoutType==="monthly"?30:91));
+    let cycles = Math.max(1, Math.floor(days/(payoutType==="monthly"?30:91)));
 
     result.innerHTML = `
+<div class="maturity-chip">
+<strong>Maturity</strong> :‎ ‎ ${getMaturityDate(D, unitVal)}
+</div>
+
 ${tdsData.applicable ? `
 <div class="result-line">
 <span>Payout (Without TDS)</span>
@@ -194,26 +201,26 @@ scrollToResult();
 function calculateRD(){
     let P = +monthly.value;
     let D = +duration.value;
-
     if(!P) return showError("Enter monthly deposit");
     if(!D) return showError("Enter duration");
-
+    let unitVal = document.getElementById("unit").value;
     let months = unit.value==="months"?D:Math.floor(D/30);
     let days = getDays(D, unit.value);
     let r = getRate(days);
 if(!r){
     return showError("Invalid duration");
 }
-
     let maturity=0;
     for(let i=0;i<months;i++){
         maturity += P*Math.pow(1+r/100/4,(months-i)/3);
     }
-
     let interest = maturity - (P*months);
     let tdsData = calculateTDS(interest);
-
     result.innerHTML = `
+<div class="maturity-chip">
+<strong>Maturity</strong> :‎ ‎ ${getMaturityDate(D, unitVal)}
+</div>
+
 <div class="result-line">
 <span>Total Deposit</span>
 <span>₹${formatINR(P*months)}</span>
@@ -370,6 +377,7 @@ function selectUnit(val, text, el){
 }
 
 // CLOSE ON OUTSIDE CLICK
+
 window.addEventListener("click", function(e){
     const modal = document.getElementById("unitModal");
     if(e.target === modal){
