@@ -1,3 +1,54 @@
+/* ======================
+DESKTOP FIX
+====================== */
+
+@media (min-width: 768px){
+
+    /* CENTER CONTENT */
+    .section{
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    /* CARD SPACING */
+    .surface{
+        padding: 24px 28px;
+    }
+
+    /* GRID (INDEX PAGE) */
+    .grid{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* ROW FIX (INPUT + UNIT) */
+    .row{
+        flex-wrap: nowrap;
+    }
+
+    .row input{
+        flex: 2;
+    }
+
+    .input-select{
+        flex: 1;
+        transform: none; /* REMOVE MOBILE SHIFT */
+    }
+
+    /* MODAL CENTER ON DESKTOP */
+    .modal{
+        justify-content: center;
+    }
+
+    .modal-box{
+        width: 320px;
+    }
+
+    /* BUTTONS LOOK BETTER */
+    .btn{
+        padding: 18px;
+        font-size: 16px;
+    }
+}
 ..tds-label{
     color:#c62828; /* red */
     font-weight:500;
