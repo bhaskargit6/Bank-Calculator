@@ -4,68 +4,6 @@
     top: 50%;
     transform: translateY(-50%);
 }
-
-/* ======================
-TABLET STYLE ON DESKTOP
-====================== */
-
-@media (min-width: 768px){
-
-    /* CENTER WHOLE APP */
-    body{
-        display:flex;
-        justify-content:center;
-    }
-
-    /* MAIN CONTAINER */
-    .section{
-        max-width: 720px;
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    /* GRID → 2x2 LIKE TABLET */
-    .grid{
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-    }
-
-    /* CARDS SIZE CONTROL */
-    .card{
-        padding: 26px;
-        font-size: 18px;
-    }
-
-    /* REMOVE EXTRA STRETCH */
-    .surface{
-        max-width: 720px;
-        margin-left:auto;
-        margin-right:auto;
-    }
-
-    /* CENTER TEXT BLOCKS */
-    .banner,
-    .topbar,
-    .subtitle{
-        text-align: center;
-        max-width: 720px;
-        margin: 0 auto;
-    }
-
-    /* FIX MODAL POSITION */
-    .modal{
-        justify-content: center;
-    }
-
-    .modal-box{
-        width: 320px;
-    }
-}
-
-
-
-
-
 ..tds-label{
     color:#c62828; /* red */
     font-weight:500;
