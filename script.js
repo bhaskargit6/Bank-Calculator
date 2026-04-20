@@ -31,7 +31,10 @@ function getDays(v,u){
 }
 
 function formatINR(val){
-    return new Intl.NumberFormat('en-IN').format(val.toFixed(2));
+    return new Intl.NumberFormat('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }).format(Number(val));
 }
 
 function getMaturityDate(value, unit){
