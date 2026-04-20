@@ -24,7 +24,7 @@ function exportPDF(){
 
             // HEADER
             {
-                text: "RIDC Summary",
+                text: "Deposit Summary",
                 style: "header"
             },
 
@@ -65,12 +65,13 @@ function exportPDF(){
             },
 
             label: {
-                fontSize: 13,
-                color: '#444'
+                fontSize: 15,
+                color: '#444',
+bold: true
             },
 
             value: {
-                fontSize: 13,
+                fontSize: 15,
                 bold: true,
                 alignment: 'right'
             },
