@@ -1,5 +1,12 @@
-
-
+.back {
+    position: fixed;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor:pointer;
+    padding:8px;
+    z-index:10;
+}
 
 /* ======================
 TABLET STYLE ON DESKTOP
@@ -375,15 +382,7 @@ TOPBAR
     justify-content:center;
 }
 
-.back {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor:pointer;
-    padding:8px;
-    z-index:10;
-}
+
 
 /* ======================
 SURFACE (CARD)
