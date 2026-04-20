@@ -1,156 +1,124 @@
 function exportPDF(){
 
-    if(!shareData){
+    // ===== SAFETY CHECK =====
+    if(!shareData || typeof shareData !== "string"){
         alert("Please calculate first");
         return;
     }
 
+    if(typeof pdfMake === "undefined"){
+        alert("PDF engine not loaded");
+        return;
+    }
+
+    // ===== PARSE DATA =====
+    const rows = shareData
+        .split("\n")
+        .filter(l => l.trim())
+        .map(line => {
+            let parts = line.replace("•","").split(":");
+            return {
+                label: parts[0]?.trim(),
+                value: parts.slice(1).join(":").trim()
+            };
+        });
+
+    // ===== PDF DESIGN =====
     const docDefinition = {
 
-        pageMargins: [0,0,0,0],
+        pageMargins: [20, 20, 20, 20],
 
         content: [
 
-            // ===== HEADER =====
+            // HEADER
             {
-                canvas: [
-                    { type:'rect', x:0, y:0, w:595, h:120, color:'#6750A4' }
+                text: "RIDC Summary",
+                fontSize: 20,
+                bold: true,
+                color: "#6750A4",
+                margin: [0,0,0,15]
+            },
+
+            // CARD WITH SHADOW
+            {
+                stack: [
+
+                    // SHADOW
+                    {
+                        canvas: [
+                            {
+                                type: 'rect',
+                                x: 3, y: 3,
+                                w: 520, h: 260,
+                                r: 10,
+                                color: '#E6E6E6'
+                            }
+                        ]
+                    },
+
+                    // MAIN CARD
+                    {
+                        margin: [0, -260],
+                        canvas: [
+                            {
+                                type: 'rect',
+                                x: 0, y: 0,
+                                w: 520, h: 260,
+                                r: 10,
+                                color: '#FFFFFF'
+                            }
+                        ]
+                    },
+
+                    // CONTENT
+                    {
+                        margin: [15, -245],
+                        table: {
+                            widths: ['*','auto'],
+                            body: rows.map(r => ([
+                                {
+                                    text: r.label,
+                                    fontSize: 13,
+                                    color: "#444",
+                                    margin: [0,6]
+                                },
+                                {
+                                    text: r.value,
+                                    fontSize: 13,
+                                    bold: true,
+                                    alignment: "right",
+                                    color:
+                                        r.label.includes("TDS") ? "#B00020" :
+                                        r.label.includes("Interest") ? "#1B5E20" :
+                                        "#000",
+                                    margin: [0,6]
+                                }
+                            ]))
+                        },
+                        layout: {
+                            hLineWidth: () => 0.5,
+                            vLineWidth: () => 0,
+                            paddingTop: () => 2,
+                            paddingBottom: () => 2
+                        }
+                    }
+
                 ]
             },
 
+            // FOOTER
             {
-                text: 'RIDC SUMMARY',
-                color: 'white',
-                bold: true,
-                fontSize: 22,
-                margin: [20, -100, 0, 5]
-            },
-
-            {
-                text: getMaturityDate(duration.value, unit.value),
-                color: 'white',
-                fontSize: 12,
-                margin: [20, 0, 0, 20]
-            },
-
-            // ===== MAIN CARD =====
-            {
-                margin: [20, 0],
-                table: {
-                    widths: ['*','auto'],
-                    body: [
-
-                        // HIGHLIGHT (BIG)
-                        [
-                            {
-                                text: 'Maturity (With TDS)',
-                                colSpan: 2,
-                                style: 'sectionTitle'
-                            },{}
-                        ],
-
-                        [
-                            {
-                                text: '',
-                            },
-                            {
-                                text: `₹ ${formatINR(maturity - tdsData.tds)}`,
-                                style: 'bigAmount'
-                            }
-                        ],
-
-                        [{text:'', colSpan:2},{}],
-
-                        // DETAILS
-                        ...[
-                            ['Deposit Amount', `₹ ${formatINR(P)}`],
-                            ['Rate of Interest', `${r}%`],
-                            ['Duration', `${D} ${unitVal}`],
-                            ['Maturity Date', getMaturityDate(D, unitVal)],
-                        ].map(r=>[
-                            {text:r[0], style:'label'},
-                            {text:r[1], style:'value'}
-                        ]),
-
-                        [{text:'', colSpan:2},{}],
-
-                        // INTEREST BLOCK
-                        ...[
-                            ['Total Interest', `+ ₹ ${formatINR(interest)}`],
-                            ['TDS (10%)', `- ₹ ${formatINR(tdsData.tds)}`],
-                            ['Net Interest', `+ ₹ ${formatINR(tdsData.net)}`],
-                        ].map(r=>[
-                            {text:r[0], style:'label'},
-                            {
-                                text:r[1],
-                                style:
-                                    r[0].includes('TDS') ? 'loss' :
-                                    'gain'
-                            }
-                        ])
-                    ]
-                },
-                layout: {
-                    hLineWidth: () => 0,
-                    vLineWidth: () => 0,
-                    paddingTop: () => 8,
-                    paddingBottom: () => 8
-                }
-            },
-
-            // ===== FOOTER =====
-            {
-                text: 'Generated by Bank Calculator',
-                alignment: 'center',
-                color: 'gray',
+                text: "Generated by Bank Calculator",
+                alignment: "center",
                 fontSize: 10,
+                color: "gray",
                 margin: [0,20,0,0]
             }
 
-        ],
-
-        styles: {
-
-            sectionTitle: {
-                fontSize: 13,
-                bold: true,
-                color: '#6750A4'
-            },
-
-            bigAmount: {
-                fontSize: 24,
-                bold: true,
-                color: '#1B5E20',
-                alignment: 'right'
-            },
-
-            label: {
-                fontSize: 12,
-                color: '#444'
-            },
-
-            value: {
-                fontSize: 12,
-                bold: true,
-                alignment: 'right'
-            },
-
-            gain: {
-                fontSize: 12,
-                bold: true,
-                color: '#1B5E20',
-                alignment: 'right'
-            },
-
-            loss: {
-                fontSize: 12,
-                bold: true,
-                color: '#B00020',
-                alignment: 'right'
-            }
-        }
+        ]
     };
 
+    // ===== EXPORT =====
     pdfMake.createPdf(docDefinition).download("RIDC_Result.pdf");
 }
 
