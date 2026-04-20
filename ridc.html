@@ -10,7 +10,6 @@
 
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
     <span class="back" onclick="goBack()">←</span>
     RIDC Calculator
@@ -18,9 +17,6 @@
 
 <div class="section">
 
-<!-- =========================
-     INPUT CARD
-========================= -->
 <div class="surface">
 
 <div class="header-row">
@@ -31,18 +27,15 @@
     <div class="chip" id="rateDisplay">--</div>
 </div>
 
-<!-- AMOUNT -->
 <label>Deposit Amount (₹)</label>
 <input id="amount" type="number" placeholder="e.g. 50,000">
 
-<!-- SENIOR -->
 <label>Senior Citizen</label>
 <div class="segmented">
     <button id="seniorNo" class="seg active" onclick="setSenior('no')">No</button>
     <button id="seniorYes" class="seg" onclick="setSenior('yes')">Yes</button>
 </div>
 
-<!-- DURATION -->
 <label>Duration</label>
 <div class="row">
 <input id="duration" type="number" placeholder="e.g. 365">
@@ -58,40 +51,18 @@
     </svg></div>
 </div>
 
-<!-- STAFF -->
 <label>Staff of WBGB</label>
 <div class="segmented">
     <button id="staffNo" class="seg active" onclick="setStaff('no')">No</button>
     <button id="staffYes" class="seg" onclick="setStaff('yes')">Yes</button>
 </div>
-
-<!-- =========================
-     TDS SECTION
-========================= -->
-<label>TDS Settings</label>
-
-<div class="segmented">
-    <button id="tdsOff" class="seg active" onclick="setTDS('off')">Off</button>
-    <button id="tdsOn" class="seg" onclick="setTDS('on')">On</button>
-</div>
-
-<div id="tdsOptions" style="display:none;">
-
-    <label>PAN Available</label>
+    
+<label>PAN available in CBS</label>
     <div class="segmented">
         <button id="panYes" class="seg active" onclick="setPAN('yes')">Yes</button>
         <button id="panNo" class="seg" onclick="setPAN('no')">No</button>
     </div>
 
-    <label>TDS Declaration (Form 121)</label>
-    <div class="segmented">
-        <button id="formNo" class="seg active" onclick="setForm('no')">No</button>
-        <button id="formYes" class="seg" onclick="setForm('yes')">Yes</button>
-    </div>
-
-</div>
-
-<!-- BUTTONS -->
 <div class="btn-group">
     <button class="btn outline" onclick="resetRIDC()">Reset</button>
     <button class="btn primary" onclick="calculateRIDC()">Calculate</button>
@@ -99,32 +70,23 @@
 
 </div>
 
-<!-- =========================
-     RESULT CARD
-========================= -->
-<div class="surface result-card">
-
-<div class="header-row">
-    <div class="title"></div>
-</div>
-
+<!-- RESULT -->
+<div class="surface">
 <div id="result">
 
-    <div class="result-line">
-        <span>Maturity Amount</span>
-        <span>--</span>
-    </div>
-
-    <div class="result-line">
-        <span>Interest Earned</span>
-        <span>--</span>
-    </div>
-
+<div class="result-line">
+    <span>Maturity Amount</span>
+    <span>--</span>
 </div>
 
+<div class="result-line">
+    <span>Interest Earned</span>
+    <span>--</span>
+</div>
+</div>
+</div>
 </div>
 
-</div>
 <!-- MODAL -->
     
 <div id="unitModal" class="modal">
@@ -143,10 +105,9 @@
     
 </div></div>
 
-<!-- ERROR -->
 <div id="snackbar"></div>
-
 <script src="script.js"></script>
-
+<script>
+</script>
 </body>
 </html>
