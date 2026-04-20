@@ -1,18 +1,17 @@
 function shareResult(){
 
-    let text = document.getElementById("result").innerText;
+let text = document.getElementById("result").innerText;  
 
-    if(!navigator.share){
-        alert("Sharing not supported on this device");
-        return;
-    }
+if(navigator.share){  
+    navigator.share({  
+        title: "Bank Calculator Result",  
+        text: text  
+    });  
+} else {  
+    navigator.clipboard.writeText(text);  
+    alert("Result copied");  
+}
 
-    navigator.share({
-        title: "Bank Calculator Result",
-        text: text
-    }).catch((err)=>{
-        console.log("Share cancelled", err);
-    });
 }
 
 
