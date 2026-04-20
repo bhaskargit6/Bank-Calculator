@@ -49,6 +49,7 @@
 <select id="unit">
     <option value="days">Days</option>
     <option value="months">Months</option>
+    <option value="years">Years</option>
 </select> 
 <div class="input-select" onclick="openUnit()">
     <span id="unitText">Days</span>
@@ -65,30 +66,13 @@
 </div>
 
 <!-- =========================
-     TDS SECTION
+     PAN SECTION
 ========================= -->
-<label>TDS Settings</label>
-
-<div class="segmented">
-    <button id="tdsOff" class="seg active" onclick="setTDS('off')">Off</button>
-    <button id="tdsOn" class="seg" onclick="setTDS('on')">On</button>
-</div>
-
-<div id="tdsOptions" style="display:none;">
-
     <label>PAN Available</label>
     <div class="segmented">
         <button id="panYes" class="seg active" onclick="setPAN('yes')">Yes</button>
         <button id="panNo" class="seg" onclick="setPAN('no')">No</button>
     </div>
-
-    <label>TDS Declaration (Form 121)</label>
-    <div class="segmented">
-        <button id="formNo" class="seg active" onclick="setForm('no')">No</button>
-        <button id="formYes" class="seg" onclick="setForm('yes')">Yes</button>
-    </div>
-
-</div>
 
 <!-- BUTTONS -->
 <div class="btn-group">
@@ -139,6 +123,9 @@
 
 <div class="option" onclick="selectUnit('months','Months',this)">
 <div class="icon"><svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19l12-12-1.5-1.5z"/></svg></div>Months</div>
+
+<div class="option" onclick="selectUnit('years','Years',this)">
+<div class="icon"><svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19l12-12-1.5-1.5z"/></svg></div>Years</div>
     
 </div></div>
 
