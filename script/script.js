@@ -1,19 +1,29 @@
-function shareResult(){
+async function exportPDF(){
 
-let text = document.getElementById("result").innerText;  
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-if(navigator.share){  
-    navigator.share({  
-        title: "Bank Calculator Result",  
-        text: text  
-    });  
-} else {  
-    navigator.clipboard.writeText(text);  
-    alert("Result copied");  
+    let y = 20;
+
+    // HEADER
+    doc.setTextColor(103,80,164); // theme color
+    doc.setFontSize(18);
+    doc.text("RIDC Summary", 20, y);
+    y += 10;
+
+    doc.setFontSize(11);
+
+    // CONTENT (use your shareData)
+    let lines = shareData.trim().split("\n");
+
+    lines.forEach(line=>{
+        doc.text(line.trim(), 20, y);
+        y += 7;
+    });
+
+    // SAVE
+    doc.save("RIDC_Result.pdf");
 }
-
-}
-
 
 // ==== DEFAULT =====
 
@@ -105,14 +115,34 @@ if(!r){
         interest = maturity - P;
     }
     let tdsData = calculateTDS(interest);
-    result.innerHTML = `
+    let unitText = unitVal;
+
+shareData = `
+• Deposit Amount: ₹${formatINR(P)}
+• Rate of Interest: ${r}%
+• Duration: ${D} ${unitText}
+
+• Maturity: ${getMaturityDate(D, unitVal)}
+${tdsData.applicable ? `
+• Maturity (Without TDS): ₹${formatINR(maturity)}
+• Total Interest: + ₹${formatINR(interest)}
+• TDS (${tdsData.rate}%): - ₹${formatINR(tdsData.tds)}
+• Net Interest: + ₹${formatINR(tdsData.net)}
+• Maturity (With TDS): ₹${formatINR(maturity - tdsData.tds)}
+` : `
+• Maturity Amount: ₹${formatINR(maturity)}
+• Total Interest: + ₹${formatINR(interest)}
+`}
+`;
+
+result.innerHTML = `
 <div class="maturity-row">
 
 <div class="maturity-chip">
 <strong>Maturity</strong> :‎ ‎ ${getMaturityDate(D, unitVal)}
 </div>
 
-<div class="share-btn" onclick="shareResult()">
+<div class="share-btn" onclick="exportPDF()">
 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
 </div>
 
