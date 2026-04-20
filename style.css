@@ -1,40 +1,49 @@
 /* ======================
-DESKTOP FIX
+TABLET STYLE ON DESKTOP
 ====================== */
 
 @media (min-width: 768px){
 
-    /* CENTER CONTENT */
+    /* CENTER WHOLE APP */
+    body{
+        display:flex;
+        justify-content:center;
+    }
+
+    /* MAIN CONTAINER */
     .section{
         max-width: 720px;
+        width: 100%;
         margin: 0 auto;
     }
 
-    /* CARD SPACING */
-    .surface{
-        padding: 24px 28px;
-    }
-
-    /* GRID (INDEX PAGE) */
+    /* GRID → 2x2 LIKE TABLET */
     .grid{
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
     }
 
-    /* ROW FIX (INPUT + UNIT) */
-    .row{
-        flex-wrap: nowrap;
+    /* CARDS SIZE CONTROL */
+    .card{
+        padding: 26px;
+        font-size: 18px;
     }
 
-    .row input{
-        flex: 2;
+    /* REMOVE EXTRA STRETCH */
+    .surface{
+        max-width: 720px;
+        margin-left:auto;
+        margin-right:auto;
     }
 
-    .input-select{
-        flex: 1;
-        transform: none; /* REMOVE MOBILE SHIFT */
+    /* CENTER TEXT BLOCKS */
+    .banner,
+    .topbar,
+    .subtitle{
+        text-align: center;
     }
 
-    /* MODAL CENTER ON DESKTOP */
+    /* FIX MODAL POSITION */
     .modal{
         justify-content: center;
     }
@@ -42,13 +51,9 @@ DESKTOP FIX
     .modal-box{
         width: 320px;
     }
-
-    /* BUTTONS LOOK BETTER */
-    .btn{
-        padding: 18px;
-        font-size: 16px;
-    }
 }
+
+/* ====*/
 ..tds-label{
     color:#c62828; /* red */
     font-weight:500;
