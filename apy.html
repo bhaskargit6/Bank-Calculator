@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APY Calculator</title>
+
+<link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+    <span class="back" onclick="goBack()">←</span>
+    Atal Pension Yojana
+</div>
+
+<div class="section">
+
+<!-- =========================
+     INPUT CARD
+========================= -->
+<div class="surface">
+
+<div class="header-row">
+    <div>
+        <div class="title">Pension Details</div>
+        <div class="subtitle">Government-backed retirement scheme</div>
+    </div>
+</div>
+
+<!-- AGE -->
+<label>Age (18–40 years)</label>
+<input id="age" type="number" placeholder="e.g. 25">
+
+<!-- FREQUENCY -->
+<label>Contribution Frequency</label>
+<div class="segmented">
+    <button id="monthly" class="seg active" onclick="setAPYFreq('monthly')">Monthly</button>
+    <button id="quarterly" class="seg" onclick="setAPYFreq('quarterly')">Quarterly</button>
+    <button id="halfyearly" class="seg" onclick="setAPYFreq('halfyearly')">Half-Yearly</button>
+</div>
+
+<!-- PENSION -->
+<label>Select Pension Amount</label>
+<div class="segmented">
+    <button class="seg active" onclick="setPension(1000)" id="p1000">₹1000</button>
+    <button class="seg" onclick="setPension(2000)" id="p2000">₹2000</button>
+    <button class="seg" onclick="setPension(3000)" id="p3000">₹3000</button>
+    <button class="seg" onclick="setPension(4000)" id="p4000">₹4000</button>
+    <button class="seg" onclick="setPension(5000)" id="p5000">₹5000</button>
+</div>
+
+
+
+<!-- BUTTONS -->
+<div class="btn-group">
+    <button class="btn outline" onclick="resetAPY()">Reset</button>
+    <button class="btn primary" onclick="calculateAPY()">Calculate</button>
+</div>
+
+</div>
+
+<!-- =========================
+     RESULT CARD
+========================= -->
+<div class="surface result-card">
+
+<div class="header-row">
+    <div class="title"></div>
+</div>
+
+<div id="result">
+
+    <div class="result-line">
+        <span>Contribution</span>
+        <span>--</span>
+    </div>
+
+    <div class="result-line">
+        <span>Frequency</span>
+        <span>--</span>
+    </div>
+
+    <div class="result-line">
+        <span>Total Contribution</span>
+        <span>--</span>
+    </div>
+
+    <div class="result-line">
+        <span>Amount to Nominee</span>
+        <span>--</span>
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ERROR -->
+<div id="snackbar"></div>
+
+<script src="script/apy.js"></script>
+
+</body>
+</html>
