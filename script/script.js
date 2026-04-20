@@ -264,10 +264,40 @@ if(!r){
     let interest = (P*r*days)/(365*100);
     let tdsData = calculateTDS(interest);
     let cycles = Math.max(1, Math.floor(days/(payoutType==="monthly"?30:91)));
+let unitText = unitVal;
+
+shareData = `
+• Deposit Amount: ₹${formatINR(P)}
+• Rate of Interest: ${r}%
+• Duration: ${D} ${unitText}
+
+• Maturity: ${getMaturityDate(D, unitVal)}
+
+${tdsData.applicable ? `
+• Payout (Without TDS): ₹${formatINR(interest/cycles)} / ${payoutType}
+• Maturity Amount: ₹${formatINR(P)}
+• Total Interest: + ₹${formatINR(interest)}
+• TDS (${tdsData.rate}%): - ₹${formatINR(tdsData.tds)}
+• Net Interest: + ₹${formatINR(tdsData.net)}
+• Payout (With TDS): ₹${formatINR(tdsData.net/cycles)} / ${payoutType}
+` : `
+• Payout: ₹${formatINR(interest/cycles)} / ${payoutType}
+• Maturity Amount: ₹${formatINR(P)}
+• Total Interest: + ₹${formatINR(interest)}
+`}
+`;
 
     result.innerHTML = `
+<div class="maturity-row">
+
 <div class="maturity-chip">
 <strong>Maturity</strong> :‎ ‎ ${getMaturityDate(D, unitVal)}
+</div>
+
+<div class="share-btn" onclick="exportPDF()">
+<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+</div>
+
 </div>
 
 ${tdsData.applicable ? `
