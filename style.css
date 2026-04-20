@@ -1,3 +1,6 @@
+
+
+
 /* ======================
 TABLET STYLE ON DESKTOP
 ====================== */
@@ -41,6 +44,8 @@ TABLET STYLE ON DESKTOP
     .topbar,
     .subtitle{
         text-align: center;
+        max-width: 720px;
+        margin: 0 auto;
     }
 
     /* FIX MODAL POSITION */
@@ -53,7 +58,10 @@ TABLET STYLE ON DESKTOP
     }
 }
 
-/* ====*/
+
+
+
+
 ..tds-label{
     color:#c62828; /* red */
     font-weight:500;
@@ -362,6 +370,9 @@ TOPBAR
     text-align: center;
     font-weight: 500;
     font-size: 16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .back {
@@ -369,6 +380,9 @@ TOPBAR
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
+    cursor:pointer;
+    padding:8px;
+    z-index:10;
 }
 
 /* ======================
