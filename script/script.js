@@ -39,6 +39,7 @@ function exportPDF(){
 
     pdfMake.createPdf(docDefinition).download("RIDC_Result.pdf");
 }
+
 // ==== DEFAULT =====
 
 let senior = "no";
