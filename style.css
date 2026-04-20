@@ -1,5 +1,21 @@
-/* ===== UNIT BOX ===== */
+..tds-label{
+    color:#c62828; /* red */
+    font-weight:500;
+}
 
+.gain{
+    color:#2e7d32; /* green */
+}
+
+.loss{
+    color:#c62828; /* red */
+}
+
+.strong{
+    font-weight:700;
+}
+
+/* ===== UNIT BOX ===== */
 .modal-home{
     position:absolute;
     inset:0;
@@ -18,7 +34,6 @@
     max-width:320px;
     padding:10px;
 }
-
 .input-select{
     flex:1.5;
     height:52px;
