@@ -1,28 +1,28 @@
 function exportPDF(){
 
+    if(!shareData){
+        alert("Please calculate first");
+        return;
+    }
+
+    const lines = shareData.trim().split("\n").filter(l => l.trim());
+
+    const tableBody = lines.map(line => {
+        let parts = line.replace("•","").split(":");
+        return [
+            parts[0]?.trim() || "",
+            parts.slice(1).join(":").trim() || ""
+        ];
+    });
+
     const docDefinition = {
         content: [
-
             { text: 'RIDC Summary', style: 'header' },
 
             {
                 table: {
                     widths: ['*','auto'],
-                    body: [
-                        ['Deposit Amount', `₹ ${formatINR(P)}`],
-                        ['Rate of Interest', `${r}%`],
-                        ['Duration', `${D} ${unitVal}`],
-                        ['Maturity', getMaturityDate(D, unitVal)],
-
-                        ['Maturity (Without TDS)', `₹ ${formatINR(maturity)}`],
-                        ['Total Interest', `+ ₹ ${formatINR(interest)}`],
-
-                        ...(tdsData.applicable ? [
-                            ['TDS', `- ₹ ${formatINR(tdsData.tds)}`],
-                            ['Net Interest', `+ ₹ ${formatINR(tdsData.net)}`],
-                            ['Maturity (With TDS)', `₹ ${formatINR(maturity - tdsData.tds)}`],
-                        ] : [])
-                    ]
+                    body: tableBody
                 },
                 layout: 'lightHorizontalLines'
             }
