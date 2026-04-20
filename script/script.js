@@ -66,8 +66,7 @@ function exportPDF(){
 
             label: {
                 fontSize: 15,
-                color: '#444',
-bold: true
+                color: '#444'
             },
 
             value: {
