@@ -1,3 +1,33 @@
+.maturity-row{
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.share-btn{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-69%);
+
+    background:#E8DEF8;
+    width:28px;
+    height:27px;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+.share-btn svg{
+    width:16px;
+    height:20px;
+    fill:black;
+}
+
+
+
 ..tds-label{
     color:#c62828; /* red */
     font-weight:500;
