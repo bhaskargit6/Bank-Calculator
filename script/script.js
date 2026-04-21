@@ -84,59 +84,77 @@ document.addEventListener("keydown", function(e){
     }
 
     // ======================
-    // ENTER FLOW (MAIN LOGIC)
-    // ======================
-    if(e.key === "Enter"){
-        e.preventDefault();
+// ENTER FLOW (FINAL CLEAN)
+// ======================
+if(e.key === "Enter"){
+    e.preventDefault();
 
-        // 1️⃣ Amount → Smart behavior
-if(active === amountEl){
-
+    const amountVal   = amountEl?.value.trim();
     const durationVal = durationEl?.value.trim();
+    const monthlyVal  = monthlyEl?.value.trim();
 
-    // ✔ If duration already filled → calculate
-    if(durationVal){
-        if(page.includes("ridc")) calculateRIDC();
-        else if(page.includes("midr")) calculateMIDR();
-        else if(page.includes("rd")) calculateRD();
+    // ❌ Ignore dropdown
+    if(active === unitEl) return;
 
-        playSound();
-        closeKeyboard();
-        return;
-    }
+    // ======================
+    // 1️⃣ FROM AMOUNT FIELD
+    // ======================
+    if(active === amountEl){
 
-    // ❌ If duration empty → move to duration
-    if(durationEl){
+        // duration exists → calculate
+        if(durationVal){
+            if(page.includes("ridc")) calculateRIDC();
+            else if(page.includes("midr")) calculateMIDR();
+            else if(page.includes("rd")) calculateRD();
+
+            playSound();
+            closeKeyboard();
+            return;
+        }
+
+        // duration missing → go to duration
         durationEl.focus();
         durationEl.select();
         return;
     }
-}
 
-        // 2️⃣ RD Monthly → Duration
-        if(active === monthlyEl && durationEl){
-            durationEl.focus();
-            durationEl.select();
+    // ======================
+    // 2️⃣ FROM MONTHLY (RD)
+    // ======================
+    if(active === monthlyEl){
+
+        if(durationVal){
+            calculateRD();
+            playSound();
+            closeKeyboard();
             return;
         }
 
-        // ❌ Ignore dropdown completely
-        if(active === unitEl){
-            return;
-        }
-
-        // 3️⃣ Duration → Calculate
-        if(active === durationEl){
-
-// ❌ If amount empty → move to amount
-    if(amountEl){
-        amountEl.focus();
-        amountEl.select();
+        durationEl.focus();
+        durationEl.select();
         return;
     }
 
-    // ✔ If duration already filled → calculate
-    if(amountVal){
+    // ======================
+    // 3️⃣ FROM DURATION FIELD
+    // ======================
+    if(active === durationEl){
+
+        // RD case → monthly empty
+        if(page.includes("rd") && !monthlyVal){
+            monthlyEl.focus();
+            monthlyEl.select();
+            return;
+        }
+
+        // RIDC / MIDR → amount empty
+        if(!page.includes("rd") && !amountVal){
+            amountEl.focus();
+            amountEl.select();
+            return;
+        }
+
+        // both filled → calculate
         if(page.includes("ridc")) calculateRIDC();
         else if(page.includes("midr")) calculateMIDR();
         else if(page.includes("rd")) calculateRD();
@@ -145,15 +163,39 @@ if(active === amountEl){
         closeKeyboard();
         return;
     }
-            
 
-        // 4️⃣ Fallback (safety)
-        if(page.includes("ridc")) calculateRIDC();
-        else if(page.includes("midr")) calculateMIDR();
-        else if(page.includes("rd")) calculateRD();
+    // ======================
+    // 4️⃣ FALLBACK (safety)
+    // ======================
+    if(page.includes("rd")){
+        if(!monthlyVal){
+            monthlyEl.focus();
+            monthlyEl.select();
+            return;
+        }
+    } else {
+        if(!amountVal){
+            amountEl.focus();
+            amountEl.select();
+            return;
+        }
     }
 
-});
+    if(!durationVal){
+        durationEl.focus();
+        durationEl.select();
+        return;
+    }
+
+    // final calculate
+    if(page.includes("ridc")) calculateRIDC();
+    else if(page.includes("midr")) calculateMIDR();
+    else if(page.includes("rd")) calculateRD();
+
+    playSound();
+    closeKeyboard();
+}
+
 
 // ======================
 // COPY PROTECTION
