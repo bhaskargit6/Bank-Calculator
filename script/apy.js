@@ -1,4 +1,70 @@
 // ======================
+// SMART KEYBOARD SYSTEM (APY)
+// ======================
+
+function closeKeyboard(){
+    if(document.activeElement){
+        document.activeElement.blur();
+    }
+}
+
+document.addEventListener("keydown", function(e){
+
+    const active = document.activeElement;
+
+    const ageEl = document.getElementById("age");
+    const page = window.location.pathname;
+
+    const isInput = active && active.tagName === "INPUT";
+
+    // ======================
+    // ESC → BACK
+    // ======================
+    if(e.key === "Escape"){
+        goBack();
+        return;
+    }
+
+    // ======================
+    // DELETE → RESET
+    // ======================
+    if(e.key === "Delete"){
+        resetAPY();
+        return;
+    }
+
+    // ======================
+    // NUMBER → AUTO FOCUS AGE
+    // ======================
+    if(!isInput && /^[0-9]$/.test(e.key)){
+
+        if(ageEl){
+            ageEl.focus();
+            ageEl.value = e.key;
+            e.preventDefault();
+        }
+        return;
+    }
+
+    // ======================
+    // ENTER FLOW
+    // ======================
+    if(e.key === "Enter"){
+
+        // Only trigger when typing in age
+        if(active !== ageEl) return;
+
+        e.preventDefault();
+
+        calculateAPY();
+        closeKeyboard();
+
+        return;
+    }
+
+});
+
+// ======================
 // STATE
 // ======================
 let apyFreq = "monthly";
