@@ -615,19 +615,56 @@ function resetRD(){
 }
 
 // ======================
-// SNACKBAR ERROR
+// SNACKBAR ERROR + AUTO FOCUS
 // ======================
 
 function showError(msg){
+
     let bar = document.getElementById("snackbar");
-    if(!bar) return alert(msg);
 
-    bar.innerText = msg;
-    bar.classList.add("show");
+    // Show message
+    if(!bar){
+        alert(msg);
+    } else {
+        bar.innerText = msg;
+        bar.classList.add("show");
+        setTimeout(()=>bar.classList.remove("show"),2500);
+    }
 
-    setTimeout(()=>bar.classList.remove("show"),2500);
+    // ======================
+    // AUTO FOCUS LOGIC
+    // ======================
+
+    const amountEl   = document.getElementById("amount");
+    const durationEl = document.getElementById("duration");
+    const monthlyEl  = document.getElementById("monthly");
+
+    const m = msg.toLowerCase();
+
+    // Deposit amount (RIDC / MIDR)
+    if(m.includes("deposit amount") && amountEl){
+        amountEl.focus();
+        amountEl.select();
+        return;
+    }
+
+    // Monthly deposit (RD)
+    if(m.includes("monthly") && monthlyEl){
+        monthlyEl.focus();
+        monthlyEl.select();
+        return;
+    }
+
+    // Duration
+    if(m.includes("duration") && durationEl){
+        durationEl.focus();
+        durationEl.select();
+        return;
+    }
 }
 
+// ======================
+// RESET SCROLL ON PAGE LOAD
 // ======================
 window.addEventListener("pageshow", ()=>window.scrollTo(0,0));
 
