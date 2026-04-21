@@ -11,16 +11,18 @@ flex-direction: column;
     padding: 18px;
 }
 
-/* DESKTOP VIEW */
 @media (min-width: 768px){
 
     .section{
+        display: flex;
         flex-direction: row;
-        align-items: flex-start;
+        align-items: stretch;
+        gap: 24px;
     }
 
     .section .surface{
-        flex: 2;
+        flex: 0 0 50%;
+        max-width: 50%;
     }
 
 }
