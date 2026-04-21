@@ -633,13 +633,29 @@ function resetRIDC(){
 }
 
 function resetMIDR(){
-    amount.value="";
-    duration.value="";
+    amount.value = "";
+    duration.value = "";
+    senior = "no";
+    staff = "no";
+    panStatus = "yes";
+    payoutType = "monthly";
+    setSenior("no");
+    setStaff("no");
+    setPAN("yes");
+    setPayout("monthly");
+
+    const unitEl = document.getElementById("unit");
+    const unitText = document.getElementById("unitText");
+    if(unitEl) unitEl.value = "days";
+    if(unitText) unitText.innerText = "Days";
+
     result.innerHTML = `
-<div class="result-line"><span>Payout</span><span>--</span></div>
-<div class="result-line"><span>Maturity Amount</span><span>--</span></div>
-<div class="result-line"><span>Total Interest</span><span>--</span></div>`;
-scrollToTop()
+    <div class="result-line"><span>Payout</span><span>--</span></div>
+    <div class="result-line"><span>Maturity Amount</span><span>--</span></div>
+    <div class="result-line"><span>Total Interest</span><span>--</span></div>
+    `;
+    autoRate();
+    scrollToTop();
 }
 
 function resetRD(){
