@@ -89,12 +89,29 @@ document.addEventListener("keydown", function(e){
     if(e.key === "Enter"){
         e.preventDefault();
 
-        // 1️⃣ Amount → Duration
-        if(active === amountEl && durationEl){
-            durationEl.focus();
-            durationEl.select();
-            return;
-        }
+        // 1️⃣ Amount → Smart behavior
+if(active === amountEl){
+
+    const durationVal = durationEl?.value.trim();
+
+    // ✔ If duration already filled → calculate
+    if(durationVal){
+        if(page.includes("ridc")) calculateRIDC();
+        else if(page.includes("midr")) calculateMIDR();
+        else if(page.includes("rd")) calculateRD();
+
+        playSound();
+        closeKeyboard();
+        return;
+    }
+
+    // ❌ If duration empty → move to duration
+    if(durationEl){
+        durationEl.focus();
+        durationEl.select();
+        return;
+    }
+}
 
         // 2️⃣ RD Monthly → Duration
         if(active === monthlyEl && durationEl){
