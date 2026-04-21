@@ -9,7 +9,7 @@ function isDesktop(){
 document.addEventListener("keydown", function(e){
 
     // ❌ Ignore on mobile
-    if(!isDesktop()) return;
+    
 
     const active = document.activeElement;
 
