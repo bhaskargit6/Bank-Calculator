@@ -1,9 +1,15 @@
 // ======================
-// SMART KEYBOARD SYSTEM (FINAL CLEAN)
+// SMART KEYBOARD SYSTEM
 // ======================
 
 function isDesktop(){
     return window.innerWidth >= 768;
+}
+
+function closeKeyboard(){
+    if(document.activeElement){
+        document.activeElement.blur();
+    }
 }
 
 document.addEventListener("keydown", function(e){
@@ -386,6 +392,7 @@ ${tdsData.applicable ? `
 </div>` : ""}
 `;
 scrollToResult();
+closeKeyboard();
 }
 
 // ======================
@@ -483,6 +490,7 @@ ${tdsData.applicable ? `
 `}
 `;
 scrollToResult();
+closeKeyboard();
 }
 
 // ======================
@@ -579,6 +587,7 @@ ${tdsData.applicable ? `
 </div>` : ""}
 `;
 scrollToResult();
+closeKeyboard(); 
 }
 
 // ======================
