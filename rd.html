@@ -6,6 +6,23 @@
 <title>RD Calculator</title>
 
 <link rel="stylesheet" href="style/style.css">
+<style>
+@media (min-width: 768px){
+
+    .section{
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        gap: 24px;
+    }
+
+    .section .surface{
+        flex: 1;
+        min-width: 0; /* IMPORTANT for overflow fix */
+    }
+
+}
+</style>
 </head>
 
 <body>
