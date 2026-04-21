@@ -12,6 +12,41 @@
 .option{
     cursor:pointer;
 }
+/* ======================
+INDEX DESKTOP LAYOUT
+====================== */
+
+@media (min-width: 1024px){
+
+    body{
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    /* Make all sections grid */
+    body{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: start;
+    }
+
+    /* HEADER full width */
+    .section:first-child{
+        grid-column: 1 / -1;
+    }
+
+    /* CALCULATOR block (LEFT) */
+    .section:nth-child(2){
+        grid-column: 1 / 2;
+    }
+
+    /* EVERYTHING ELSE (RIGHT) */
+    .section:nth-child(n+3){
+        grid-column: 2 / 3;
+    }
+
+}
 </style>
 
 </head>
