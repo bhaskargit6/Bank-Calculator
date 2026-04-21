@@ -752,6 +752,8 @@ window.addEventListener("click", function(e){
 // ======================
 
 function scrollToResult(){
+// ❌ Disable on desktop
+    if(window.innerWidth >= 768) return;
     const el = document.getElementById("result");
     if(!el) return;
 
