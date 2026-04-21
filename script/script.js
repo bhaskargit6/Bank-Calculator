@@ -2,10 +2,6 @@
 // SMART KEYBOARD SYSTEM
 // ======================
 
-function isDesktop(){
-    return window.innerWidth <= 768;
-}
-
 function closeKeyboard(){
     if(document.activeElement){
         document.activeElement.blur();
@@ -32,7 +28,6 @@ document.addEventListener("keydown", function(e){
     // ESC → BACK
     // ======================
     if(e.key === "Escape"){
-if(!isDesktop()) return;
         goBack();
         return;
     }
