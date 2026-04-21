@@ -116,6 +116,7 @@ function calculateAPY(){
         <span>₹${data.c.toLocaleString('en-IN')}</span>
     </div>
     `;
+closeKeyboard();
 }
 
 
@@ -172,4 +173,10 @@ function showError(msg){
     bar.classList.add("show");
 
     setTimeout(()=>bar.classList.remove("show"),2500);
+}
+
+function closeKeyboard(){
+    if(document.activeElement){
+        document.activeElement.blur();
+    }
 }
