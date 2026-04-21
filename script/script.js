@@ -135,13 +135,17 @@ if(active === amountEl){
         return;
     }
 
-            if(page.includes("ridc")) calculateRIDC();
-            else if(page.includes("midr")) calculateMIDR();
-            else if(page.includes("rd")) calculateRD();
-closeKeyboard();
+    // ✔ If duration already filled → calculate
+    if(amountVal){
+        if(page.includes("ridc")) calculateRIDC();
+        else if(page.includes("midr")) calculateMIDR();
+        else if(page.includes("rd")) calculateRD();
 
-            return;
-        }
+        playSound();
+        closeKeyboard();
+        return;
+    }
+            
 
         // 4️⃣ Fallback (safety)
         if(page.includes("ridc")) calculateRIDC();
