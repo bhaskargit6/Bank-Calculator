@@ -693,6 +693,14 @@ function resetRIDC(){
     const unitText = document.getElementById("unitText");
     if(unitEl) unitEl.value = "days";
     if(unitText) unitText.innerText = "Days";
+document.querySelectorAll(".option").forEach(o=>{
+    o.classList.remove("active");
+});
+
+const defaultOption = document.querySelector('.option[data-value="days"]');
+if(defaultOption){
+    defaultOption.classList.add("active");
+}
     
     result.innerHTML = `
     <div class="result-line"><span>Maturity Amount</span><span>--</span></div>
@@ -718,6 +726,14 @@ function resetMIDR(){
     const unitText = document.getElementById("unitText");
     if(unitEl) unitEl.value = "days";
     if(unitText) unitText.innerText = "Days";
+document.querySelectorAll(".option").forEach(o=>{
+    o.classList.remove("active");
+});
+
+const defaultOption = document.querySelector('.option[data-value="days"]');
+if(defaultOption){
+    defaultOption.classList.add("active");
+}
 
     result.innerHTML = `
     <div class="result-line"><span>Payout</span><span>--</span></div>
@@ -742,7 +758,14 @@ function resetRD(){
     const unitText = document.getElementById("unitText");
     if(unitEl) unitEl.value = "days";
     if(unitText) unitText.innerText = "Days";
-    
+    document.querySelectorAll(".option").forEach(o=>{
+    o.classList.remove("active");
+});
+
+const defaultOption = document.querySelector('.option[data-value="days"]');
+if(defaultOption){
+    defaultOption.classList.add("active");
+}
     result.innerHTML = `
     <div class="result-line"><span>Total Deposit</span><span>--</span></div>
     <div class="result-line"><span>Maturity Amount</span><span>--</span></div>
