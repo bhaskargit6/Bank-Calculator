@@ -9,8 +9,20 @@ flex-direction: column;
 
 .section {
     padding: 18px;
-flex:2;
 }
+
+/* DESKTOP VIEW */
+@media (min-width: 768px){
+
+    .section{
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .section .surface{
+        flex: 1;
+    }
+
 
 
 
