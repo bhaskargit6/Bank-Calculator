@@ -268,9 +268,16 @@ function getMaturityDate(value, unit){
 // ======================
 
 function goBack(){
-    if(window.history.length > 1){
+
+    try{
         window.history.back();
-    } else {
+
+        // fallback after short delay
+        setTimeout(()=>{
+            window.location.href = "index.html";
+        }, 300);
+
+    } catch(e){
         window.location.href = "index.html";
     }
 }
