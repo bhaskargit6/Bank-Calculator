@@ -1,3 +1,32 @@
+// ======================
+// COPY PROTECTION
+// ======================
+
+// Disable right click
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+// Disable text selection
+document.addEventListener("selectstart", e => e.preventDefault());
+
+// Disable copy
+document.addEventListener("copy", e => e.preventDefault());
+
+// Disable key shortcuts
+document.addEventListener("keydown", function(e){
+
+    // Ctrl+C / Ctrl+U / Ctrl+S
+    if(e.ctrlKey && ["c","u","s"].includes(e.key.toLowerCase())){
+        e.preventDefault();
+    }
+
+    // F12 (Dev tools)
+    if(e.key === "F12"){
+        e.preventDefault();
+    }
+
+});
+
+
 function exportPDF(){
 
     if(!shareData){
