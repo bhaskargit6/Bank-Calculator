@@ -117,7 +117,7 @@ document.addEventListener("selectstart", e => e.preventDefault());
 document.addEventListener("copy", e => e.preventDefault());
 
 // Disable key shortcuts
-
+document.addEventListener("keydown", function(e){
 
     // Ctrl+C / Ctrl+U / Ctrl+S
     if(e.ctrlKey && ["c","u","s"].includes(e.key.toLowerCase())){
