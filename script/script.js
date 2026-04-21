@@ -11,6 +11,17 @@ function playSound(){
     }
 }
 
+let successAudio = new Audio("assets/success.m4a");
+successAudio.preload = "auto";
+
+// Force preload on first user interaction (mobile safe)
+document.addEventListener("click", () => {
+    successAudio.play().then(()=>{
+        successAudio.pause();
+        successAudio.currentTime = 0;
+    }).catch(()=>{});
+}, { once: true });
+
 // ======================
 // SMART KEYBOARD SYSTEM
 // ======================
