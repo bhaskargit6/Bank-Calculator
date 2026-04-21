@@ -581,3 +581,9 @@ MOBILE OPTIMIZATION
         padding: 14px;
     }
 }
+
+.row input:focus {
+    outline: none;
+    border: 1.5px solid #6750A4;
+    background: #fff;
+}
