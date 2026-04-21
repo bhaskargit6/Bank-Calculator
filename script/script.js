@@ -420,14 +420,14 @@ shareData = `
 • Maturity: ${getMaturityDate(D, unitVal)}
 
 ${tdsData.applicable ? `
-• Payout (Without TDS): ₹${formatINR(interest/cycles)} / ${payoutType}
+• Payout (Without TDS): ₹${formatINR(interest/cycles)} ${payoutType}
 • Maturity Amount: ₹${formatINR(P)}
 • Total Interest: + ₹${formatINR(interest)}
 • TDS (${tdsData.rate}%): - ₹${formatINR(tdsData.tds)}
 • Net Interest: + ₹${formatINR(tdsData.net)}
-• Payout (With TDS): ₹${formatINR(tdsData.net/cycles)} / ${payoutType}
+• Payout (With TDS): ₹${formatINR(tdsData.net/cycles)} ${payoutType}
 ` : `
-• Payout: ₹${formatINR(interest/cycles)} / ${payoutType}
+• Payout: ₹${formatINR(interest/cycles)} ${payoutType}
 • Maturity Amount: ₹${formatINR(P)}
 • Total Interest: + ₹${formatINR(interest)}
 `}
