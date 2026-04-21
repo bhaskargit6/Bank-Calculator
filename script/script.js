@@ -196,6 +196,7 @@ if(e.key === "Enter"){
     closeKeyboard();
 }
 
+});
 
 // ======================
 // COPY PROTECTION
