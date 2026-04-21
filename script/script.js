@@ -131,6 +131,7 @@ if(active === amountEl){
             if(page.includes("ridc")) calculateRIDC();
             else if(page.includes("midr")) calculateMIDR();
             else if(page.includes("rd")) calculateRD();
+closeKeyboard();
 
             return;
         }
