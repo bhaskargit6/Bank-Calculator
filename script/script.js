@@ -113,6 +113,14 @@ if(active === amountEl){
     }
 }
 
+// ❌ If amount empty → move to amount
+    if(amountEl){
+        amountEl.focus();
+        amountEl.select();
+        return;
+    }
+}
+
         // 2️⃣ RD Monthly → Duration
         if(active === monthlyEl && durationEl){
             durationEl.focus();
