@@ -111,14 +111,6 @@ if(active === amountEl){
         durationEl.select();
         return;
     }
-
-
-// ❌ If amount empty → move to amount
-    if(amountEl){
-        amountEl.focus();
-        amountEl.select();
-        return;
-    }
 }
 
         // 2️⃣ RD Monthly → Duration
@@ -135,6 +127,13 @@ if(active === amountEl){
 
         // 3️⃣ Duration → Calculate
         if(active === durationEl){
+
+// ❌ If amount empty → move to amount
+    if(amountEl){
+        amountEl.focus();
+        amountEl.select();
+        return;
+    }
 
             if(page.includes("ridc")) calculateRIDC();
             else if(page.includes("midr")) calculateMIDR();
