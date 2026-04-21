@@ -21,8 +21,8 @@ flex-direction: column;
     }
 
     .section .surface{
-        flex: 0 0 50%;
-        max-width: 50%;
+        flex: 1;
+        min-width: 0; /* IMPORTANT for overflow fix */
     }
 
 }
