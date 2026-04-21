@@ -84,49 +84,52 @@ document.addEventListener("keydown", function(e){
     }
 
     // ======================
-    // ENTER FLOW
+// ENTER FLOW (SMART)
+// ======================
+if(e.key === "Enter"){
+    e.preventDefault();
+
+    const amountVal   = amountEl?.value.trim();
+    const durationVal = durationEl?.value.trim();
+
+    // ❌ Ignore dropdown
+    if(active === unitEl) return;
+
     // ======================
-    if(e.key === "Enter"){
-        e.preventDefault();
-
-        // 1️⃣ Amount → Duration
-        if(active === amountEl && durationEl){
-            durationEl.focus();
-            durationEl.select();
-            return;
-        }
-
-        // 2️⃣ RD Monthly → Duration
-        if(active === monthlyEl && durationEl){
-            durationEl.focus();
-            durationEl.select();
-            return;
-        }
-
-        // ❌ Ignore dropdown completely
-        if(active === unitEl){
-            return;
-        }
-
-        // 3️⃣ Duration → Calculate
-        if(active === durationEl){
-
-            if(page.includes("ridc")) calculateRIDC();
-            else if(page.includes("midr")) calculateMIDR();
-            else if(page.includes("rd")) calculateRD();
-playSound();
-closeKeyboard();
-
-            return;
-        }
-
-        // 4️⃣ Fallback (safety)
-        if(page.includes("ridc")) calculateRIDC();
-        else if(page.includes("midr")) calculateMIDR();
-        else if(page.includes("rd")) calculateRD();
+    // CASE 1: BOTH EMPTY
+    // ======================
+    if(!amountVal && !durationVal){
+        amountEl.focus();
+        return;
     }
 
-});
+    // ======================
+    // CASE 2: AMOUNT EMPTY
+    // ======================
+    if(!amountVal){
+        amountEl.focus();
+        return;
+    }
+
+    // ======================
+    // CASE 3: DURATION EMPTY
+    // ======================
+    if(!durationVal){
+        durationEl.focus();
+        durationEl.select();
+        return;
+    }
+
+    // ======================
+    // CASE 4: BOTH FILLED → CALCULATE
+    // ======================
+    if(page.includes("ridc")) calculateRIDC();
+    else if(page.includes("midr")) calculateMIDR();
+    else if(page.includes("rd")) calculateRD();
+
+    playSound();
+    closeKeyboard();
+}
 
 // ======================
 // COPY PROTECTION
