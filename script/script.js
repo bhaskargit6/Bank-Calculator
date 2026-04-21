@@ -83,65 +83,48 @@ document.addEventListener("keydown", function(e){
         return;
     }
 
-// ======================
-// ENTER FLOW (SMART FIXED)
-// ======================
-if(e.key === "Enter"){
-
-    const amountVal   = amountEl?.value.trim();
-    const durationVal = durationEl?.value.trim();
-
-    // ❌ Ignore dropdown
-    if(active === unitEl) return;
-
     // ======================
-    // CASE 1: BOTH EMPTY
+    // ENTER FLOW (MAIN LOGIC)
     // ======================
-    if(!amountVal && !durationVal){
+    if(e.key === "Enter"){
         e.preventDefault();
-        setTimeout(()=>{
-            amountEl.focus();
-            amountEl.select();
-        }, 10);
-        return;
-    }
 
-    // ======================
-    // CASE 2: AMOUNT EMPTY
-    // ======================
-    if(!amountVal){
-        e.preventDefault();
-        setTimeout(()=>{
-            amountEl.focus();
-            amountEl.select();
-        }, 10);
-        return;
-    }
-
-    // ======================
-    // CASE 3: DURATION EMPTY
-    // ======================
-    if(!durationVal){
-        e.preventDefault();
-        setTimeout(()=>{
+        // 1️⃣ Amount → Duration
+        if(active === amountEl && durationEl){
             durationEl.focus();
             durationEl.select();
-        }, 10);
-        return;
+            return;
+        }
+
+        // 2️⃣ RD Monthly → Duration
+        if(active === monthlyEl && durationEl){
+            durationEl.focus();
+            durationEl.select();
+            return;
+        }
+
+        // ❌ Ignore dropdown completely
+        if(active === unitEl){
+            return;
+        }
+
+        // 3️⃣ Duration → Calculate
+        if(active === durationEl){
+
+            if(page.includes("ridc")) calculateRIDC();
+            else if(page.includes("midr")) calculateMIDR();
+            else if(page.includes("rd")) calculateRD();
+
+            return;
+        }
+
+        // 4️⃣ Fallback (safety)
+        if(page.includes("ridc")) calculateRIDC();
+        else if(page.includes("midr")) calculateMIDR();
+        else if(page.includes("rd")) calculateRD();
     }
 
-    // ======================
-    // CASE 4: BOTH FILLED → CALCULATE
-    // ======================
-    e.preventDefault();
-
-    if(page.includes("ridc")) calculateRIDC();
-    else if(page.includes("midr")) calculateMIDR();
-    else if(page.includes("rd")) calculateRD();
-
-    playSound();
-    closeKeyboard();
-}
+});
 
 // ======================
 // COPY PROTECTION
