@@ -610,13 +610,26 @@ scrollToResult();
 // ======================
 
 function resetRIDC(){
-    amount.value="";
-    duration.value="";
+    amount.value = "";
+    duration.value = "";
+    senior = "no";
+    staff = "no";
+    panStatus = "yes";
+    setSenior("no");
+    setStaff("no");
+    setPAN("yes");
+    
+    const unitEl = document.getElementById("unit");
+    const unitText = document.getElementById("unitText");
+    if(unitEl) unitEl.value = "days";
+    if(unitText) unitText.innerText = "Days";
+    
     result.innerHTML = `
-<div class="result-line"><span>Maturity Amount</span><span>--</span></div>
-<div class="result-line"><span>Interest Earned</span><span>--</span></div>`;
-scrollToTop()
-
+    <div class="result-line"><span>Maturity Amount</span><span>--</span></div>
+    <div class="result-line"><span>Interest Earned</span><span>--</span></div>
+    `;
+    autoRate();
+    scrollToTop();
 }
 
 function resetMIDR(){
