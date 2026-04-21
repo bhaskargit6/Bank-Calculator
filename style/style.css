@@ -1,19 +1,15 @@
-/* ======================
-BASE
-====================== */
-
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(180deg,#F6F3FB,#ECE7F6);
-min-height: 100vh;
-display: flex;
-flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .section{
     display: flex;
-padding: 18px;
+    padding: 18px;
     flex-direction: column;
     gap: 16px;
 }
@@ -30,13 +26,15 @@ padding: 18px;
         flex: 1;
     }
 
-    /* Optional: limit width for better balance */
     .section .surface:first-child{
         max-width: 500px;
     }
 }
-    
-}
+
+
+
+
+
 
 .maturity-row{
     position: relative;
