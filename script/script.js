@@ -1,4 +1,17 @@
 // ======================
+// PLAY RESULT SOUND
+// ======================
+
+function playSound(){
+    try{
+        const audio = new Audio("assets/success.m4a");
+        audio.play();
+    } catch(e){
+        console.log("Audio failed:", e);
+    }
+}
+
+// ======================
 // SMART KEYBOARD SYSTEM
 // ======================
 
@@ -91,6 +104,7 @@ document.addEventListener("keydown", function(e){
             else if(page.includes("midr")) calculateMIDR();
             else if(page.includes("rd")) calculateRD();
 closeKeyboard();
+playSound();
 
             return;
         }
