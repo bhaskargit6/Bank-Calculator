@@ -111,7 +111,7 @@ if(active === amountEl){
         durationEl.select();
         return;
     }
-}
+
 
 // ❌ If amount empty → move to amount
     if(amountEl){
