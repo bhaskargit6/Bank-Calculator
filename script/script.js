@@ -659,14 +659,29 @@ function resetMIDR(){
 }
 
 function resetRD(){
-    monthly.value="";
-    duration.value="";
+    monthly.value = "";
+    duration.value = "";
+    senior = "no";
+    staff = "no";
+    panStatus = "yes";
+    setSenior("no");
+    setStaff("no");
+    setPAN("yes");
+    
+    const unitEl = document.getElementById("unit");
+    const unitText = document.getElementById("unitText");
+    if(unitEl) unitEl.value = "days";
+    if(unitText) unitText.innerText = "Days";
+    
     result.innerHTML = `
-<div class="result-line"><span>Total Deposit</span><span>--</span></div>
-<div class="result-line"><span>Maturity Amount</span><span>--</span></div>
-<div class="result-line"><span>Total Interest</span><span>--</span></div>`;
-scrollToTop()
+    <div class="result-line"><span>Total Deposit</span><span>--</span></div>
+    <div class="result-line"><span>Maturity Amount</span><span>--</span></div>
+    <div class="result-line"><span>Total Interest</span><span>--</span></div>
+    `;
+    autoRate();
+    scrollToTop();
 }
+
 
 // ======================
 // SNACKBAR ERROR + AUTO FOCUS
