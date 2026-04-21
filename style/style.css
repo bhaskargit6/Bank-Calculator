@@ -20,10 +20,10 @@ flex-direction: column;
     }
 
     .section .surface{
-        flex: 1;
+        flex: 2;
     }
 
-
+}
 
 
 .maturity-row{
