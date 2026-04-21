@@ -1,5 +1,5 @@
 // ======================
-// SMART KEYBOARD SYSTEM (DESKTOP ONLY)
+// SMART KEYBOARD SYSTEM (FINAL CLEAN)
 // ======================
 
 function isDesktop(){
@@ -8,34 +8,29 @@ function isDesktop(){
 
 document.addEventListener("keydown", function(e){
 
-    // ❌ DO NOTHING ON MOBILE
+    // ❌ Ignore on mobile
     if(!isDesktop()) return;
 
     const active = document.activeElement;
+
+    const amountEl   = document.getElementById("amount");
+    const durationEl = document.getElementById("duration");
+    const monthlyEl  = document.getElementById("monthly");
+    const unitEl     = document.getElementById("unit");
+
     const isInput = active && (
-        active.tagName === "INPUT" || 
-        active.tagName === "SELECT" || 
+        active.tagName === "INPUT" ||
         active.tagName === "TEXTAREA"
     );
+
+    const page = window.location.pathname;
 
     // ======================
     // ESC → BACK
     // ======================
     if(e.key === "Escape"){
         goBack();
-    }
-
-    // ======================
-    // ENTER → CALCULATE
-    // ======================
-    if(e.key === "Enter"){
-        e.preventDefault();
-
-        const page = window.location.pathname;
-
-        if(page.includes("ridc")) calculateRIDC();
-        else if(page.includes("midr")) calculateMIDR();
-        else if(page.includes("rd")) calculateRD();
+        return;
     }
 
     // ======================
@@ -43,25 +38,67 @@ document.addEventListener("keydown", function(e){
     // ======================
     if(e.key === "Delete"){
 
-        const page = window.location.pathname;
-
         if(page.includes("ridc")) resetRIDC();
         else if(page.includes("midr")) resetMIDR();
         else if(page.includes("rd")) resetRD();
+
+        return;
     }
 
     // ======================
-    // NUMBER → AUTO FOCUS
+    // NUMBER → AUTO FOCUS FIRST INPUT
     // ======================
     if(!isInput && /^[0-9]$/.test(e.key)){
 
-        const firstInput = document.querySelector("input");
+        const firstInput = amountEl || monthlyEl;
 
         if(firstInput){
             firstInput.focus();
             firstInput.value = e.key;
             e.preventDefault();
         }
+        return;
+    }
+
+    // ======================
+    // ENTER FLOW (MAIN LOGIC)
+    // ======================
+    if(e.key === "Enter"){
+        e.preventDefault();
+
+        // 1️⃣ Amount → Duration
+        if(active === amountEl && durationEl){
+            durationEl.focus();
+            durationEl.select();
+            return;
+        }
+
+        // 2️⃣ RD Monthly → Duration
+        if(active === monthlyEl && durationEl){
+            durationEl.focus();
+            durationEl.select();
+            return;
+        }
+
+        // ❌ Ignore dropdown completely
+        if(active === unitEl){
+            return;
+        }
+
+        // 3️⃣ Duration → Calculate
+        if(active === durationEl){
+
+            if(page.includes("ridc")) calculateRIDC();
+            else if(page.includes("midr")) calculateMIDR();
+            else if(page.includes("rd")) calculateRD();
+
+            return;
+        }
+
+        // 4️⃣ Fallback (safety)
+        if(page.includes("ridc")) calculateRIDC();
+        else if(page.includes("midr")) calculateMIDR();
+        else if(page.includes("rd")) calculateRD();
     }
 
 });
