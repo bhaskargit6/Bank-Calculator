@@ -63,6 +63,10 @@ document.addEventListener("keydown", function(e){
     // ENTER FLOW (MAIN LOGIC)
     // ======================
     if(e.key === "Enter"){
+// Only work when inside input fields
+    if(active !== amountEl && active !== durationEl && active !== monthlyEl){
+        return;
+    }
         e.preventDefault();
 
         // 1️⃣ Amount → Duration
@@ -90,6 +94,7 @@ document.addEventListener("keydown", function(e){
             if(page.includes("ridc")) calculateRIDC();
             else if(page.includes("midr")) calculateMIDR();
             else if(page.includes("rd")) calculateRD();
+closeKeyboard();
 
             return;
         }
@@ -388,7 +393,6 @@ ${tdsData.applicable ? `
 </div>` : ""}
 `;
 scrollToResult();
-closeKeyboard();
 }
 
 // ======================
@@ -486,7 +490,6 @@ ${tdsData.applicable ? `
 `}
 `;
 scrollToResult();
-closeKeyboard();
 }
 
 // ======================
@@ -583,7 +586,6 @@ ${tdsData.applicable ? `
 </div>` : ""}
 `;
 scrollToResult();
-closeKeyboard(); 
 }
 
 // ======================
