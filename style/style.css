@@ -1,5 +1,7 @@
 body {
     margin: 0;
+user-select: none;
+    -webkit-user-select: none;
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(180deg,#F6F3FB,#ECE7F6);
 min-height: 100vh;
