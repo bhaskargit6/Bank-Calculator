@@ -615,6 +615,8 @@ function resetRIDC(){
     result.innerHTML = `
 <div class="result-line"><span>Maturity Amount</span><span>--</span></div>
 <div class="result-line"><span>Interest Earned</span><span>--</span></div>`;
+scrollToTop()
+
 }
 
 function resetMIDR(){
@@ -624,6 +626,7 @@ function resetMIDR(){
 <div class="result-line"><span>Payout</span><span>--</span></div>
 <div class="result-line"><span>Maturity Amount</span><span>--</span></div>
 <div class="result-line"><span>Total Interest</span><span>--</span></div>`;
+scrollToTop()
 }
 
 function resetRD(){
@@ -633,6 +636,7 @@ function resetRD(){
 <div class="result-line"><span>Total Deposit</span><span>--</span></div>
 <div class="result-line"><span>Maturity Amount</span><span>--</span></div>
 <div class="result-line"><span>Total Interest</span><span>--</span></div>`;
+scrollToTop()
 }
 
 // ======================
@@ -785,3 +789,21 @@ function scrollToResult(){
         });
     }, 50);
 }
+
+// ======================
+// AUTO SCROLL TO TOP (ON RESET)
+// ======================
+
+function scrollToTop(){
+
+    // ❌ Disable on desktop
+    if(window.innerWidth >= 768) return;
+
+    setTimeout(()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }, 50);
+}
+
