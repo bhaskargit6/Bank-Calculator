@@ -1,4 +1,72 @@
 // ======================
+// SMART KEYBOARD SYSTEM (DESKTOP ONLY)
+// ======================
+
+function isDesktop(){
+    return window.innerWidth >= 768;
+}
+
+document.addEventListener("keydown", function(e){
+
+    // ❌ DO NOTHING ON MOBILE
+    if(!isDesktop()) return;
+
+    const active = document.activeElement;
+    const isInput = active && (
+        active.tagName === "INPUT" || 
+        active.tagName === "SELECT" || 
+        active.tagName === "TEXTAREA"
+    );
+
+    // ======================
+    // ESC → BACK
+    // ======================
+    if(e.key === "Escape"){
+        goBack();
+    }
+
+    // ======================
+    // ENTER → CALCULATE
+    // ======================
+    if(e.key === "Enter"){
+        e.preventDefault();
+
+        const page = window.location.pathname;
+
+        if(page.includes("ridc")) calculateRIDC();
+        else if(page.includes("midr")) calculateMIDR();
+        else if(page.includes("rd")) calculateRD();
+    }
+
+    // ======================
+    // DELETE → RESET
+    // ======================
+    if(e.key === "Delete"){
+
+        const page = window.location.pathname;
+
+        if(page.includes("ridc")) resetRIDC();
+        else if(page.includes("midr")) resetMIDR();
+        else if(page.includes("rd")) resetRD();
+    }
+
+    // ======================
+    // NUMBER → AUTO FOCUS
+    // ======================
+    if(!isInput && /^[0-9]$/.test(e.key)){
+
+        const firstInput = document.querySelector("input");
+
+        if(firstInput){
+            firstInput.focus();
+            firstInput.value = e.key;
+            e.preventDefault();
+        }
+    }
+
+});
+
+// ======================
 // COPY PROTECTION
 // ======================
 
