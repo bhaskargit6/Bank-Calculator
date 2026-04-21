@@ -3,7 +3,7 @@
 // ======================
 
 function isDesktop(){
-    return window.innerWidth >= 768;
+    return window.innerWidth <= 768;
 }
 
 function closeKeyboard(){
