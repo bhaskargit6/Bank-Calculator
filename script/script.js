@@ -8,9 +8,6 @@ function isDesktop(){
 
 document.addEventListener("keydown", function(e){
 
-    // ❌ Ignore on mobile
-    
-
     const active = document.activeElement;
 
     const amountEl   = document.getElementById("amount");
