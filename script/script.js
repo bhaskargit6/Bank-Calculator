@@ -83,11 +83,10 @@ document.addEventListener("keydown", function(e){
         return;
     }
 
-    // ======================
-// ENTER FLOW (SMART)
+// ======================
+// ENTER FLOW (SMART FIXED)
 // ======================
 if(e.key === "Enter"){
-    e.preventDefault();
 
     const amountVal   = amountEl?.value.trim();
     const durationVal = durationEl?.value.trim();
@@ -99,7 +98,11 @@ if(e.key === "Enter"){
     // CASE 1: BOTH EMPTY
     // ======================
     if(!amountVal && !durationVal){
-        amountEl.focus();
+        e.preventDefault();
+        setTimeout(()=>{
+            amountEl.focus();
+            amountEl.select();
+        }, 10);
         return;
     }
 
@@ -107,7 +110,11 @@ if(e.key === "Enter"){
     // CASE 2: AMOUNT EMPTY
     // ======================
     if(!amountVal){
-        amountEl.focus();
+        e.preventDefault();
+        setTimeout(()=>{
+            amountEl.focus();
+            amountEl.select();
+        }, 10);
         return;
     }
 
@@ -115,14 +122,19 @@ if(e.key === "Enter"){
     // CASE 3: DURATION EMPTY
     // ======================
     if(!durationVal){
-        durationEl.focus();
-        durationEl.select();
+        e.preventDefault();
+        setTimeout(()=>{
+            durationEl.focus();
+            durationEl.select();
+        }, 10);
         return;
     }
 
     // ======================
     // CASE 4: BOTH FILLED → CALCULATE
     // ======================
+    e.preventDefault();
+
     if(page.includes("ridc")) calculateRIDC();
     else if(page.includes("midr")) calculateMIDR();
     else if(page.includes("rd")) calculateRD();
