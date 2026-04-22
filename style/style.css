@@ -117,7 +117,7 @@ align-items:center;
 
 /* ===== MODAL ===== */
 .modal{
-    position: fixed;
+    position: absolute;
     inset: 0;
     background: rgba(0,0,0,0.3);
     display: none;
@@ -130,7 +130,7 @@ align-items:center;
 .modal-box{
     background: #fff;
     border-radius: 20px;
-    width: 80%;
+    width: 50%;
     max-width: 320px;
     padding: 10px;
 }
@@ -142,7 +142,7 @@ align-items:center;
     }
 
     .modal-box{
-        width: 320px;
+        width: 80%;
     }
 }
 
