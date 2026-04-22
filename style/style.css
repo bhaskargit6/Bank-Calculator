@@ -13,6 +13,20 @@ flex-direction: column;
     padding: 18px;
 }
 
+@media (min-width: 768px){
+    .modal{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-box{
+        width: 320px;
+        max-width: 100%;
+    }
+}
+
+
+
 .maturity-row{
     position: relative;
     margin-bottom: 10px;
