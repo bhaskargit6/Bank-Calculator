@@ -117,23 +117,36 @@ align-items:center;
 
 /* ===== MODAL ===== */
 .modal{
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.3);
-    display:none;
-    align-items:center;
-    justify-content:flex-end;
-    padding:12px;
-    z-index:1000;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    display: none;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 12px;
+    z-index: 1000;
 }
 
 .modal-box{
-    background:#fff;
-    border-radius:20px;
-    width:50%;
-    max-width:320px;
-    padding:10px;
+    background: #fff;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 320px;
+    padding: 10px;
 }
+
+@media (min-width: 768px){
+    .modal{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-box{
+        width: 320px;
+    }
+}
+
+
 
 .option{
     display:flex;
