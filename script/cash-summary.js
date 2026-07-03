@@ -241,7 +241,7 @@ function resetCashSummary(){
 
     calculate();
 
-    $("lastBalance").focus();
+    $("n500").focus();
 
 }
 
