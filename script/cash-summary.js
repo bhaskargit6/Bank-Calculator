@@ -190,6 +190,7 @@ fields.forEach(id=>{
         }
 
         calculate();
+        saveData();
 
     });
 
@@ -278,6 +279,7 @@ function resetCashSummary(){
     $("n500").focus();
 
 }
+localStorage.clear();
 
 $("resetBtn").addEventListener(
 
@@ -294,6 +296,7 @@ $("resetBtn").addEventListener(
 window.addEventListener("load",()=>{
 
     loadDate();
+    loadData();
 
     calculate();
 
