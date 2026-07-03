@@ -1,216 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bank Calculator</title>
+
+<title>Cash Summary</title>
 
 <link rel="stylesheet" href="style/style.css">
-
-<style>
-/* Optional: keep slight disabled look */
-.option{
-    cursor:pointer;
-}
-/* ======================
-INDEX DESKTOP LAYOUT
-====================== */
-
-@media (min-width: 1024px){
-
-    body{
-        max-width: 1200px;
-        margin: auto;
-    }  
-}
-</style>
+<link rel="stylesheet" href="style/cash-summary.css">
 
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="section">
-    <div class="banner-title">Bank Calculator</div>
-    <div class="subtitle">Based on West Bengal Gramin Bank</div>
+<div class="topbar">
+
+<div class="back" onclick="history.back()">
+←
 </div>
 
-<!-- CALCULATORS -->
-<div class="section">
-<div class="grid">
 
-    <!-- RIDC -->
-    <div class="card-wrapper">
-        <a href="ridc.html" class="card">RIDC</a>
-
-        <div class="scheme-chip" onclick="openScheme('RIDC')">
-            <span class="label">
-                Scheme code
-                <svg viewBox="0 0 24 24">
-                    <path d="M7 10l5 5 5-5z"></path>
-                </svg>
-            </span>
-        </div>
-    </div>
-
-    <!-- MIDR -->
-    <div class="card-wrapper">
-        <a href="midr.html" class="card">MIDR</a>
-
-        <div class="scheme-chip" onclick="openScheme('MIDR')">
-            <span class="label">
-                Scheme code
-                <svg viewBox="0 0 24 24">
-                    <path d="M7 10l5 5 5-5z"></path>
-                </svg>
-            </span>
-        </div>
-    </div>
-
-    <!-- RD -->
-    <div class="card-wrapper">
-        <a href="rd.html" class="card">Recurring Deposit</a>
-
-        <div class="scheme-chip" onclick="openScheme('RD')">
-            <span class="label">
-                Scheme code
-                <svg viewBox="0 0 24 24">
-                    <path d="M7 10l5 5 5-5z"></path>
-                </svg>
-            </span>
-        </div>
-    </div>
-
-    <!-- APY -->
-    <div class="card-wrapper">
-        <a href="apy.html" class="card">Atal Pension Yojana</a>
-
-        <div class="scheme-chip">
-            <span class="label">18 to 40 years</span>
-        </div>
-    </div>
-    <!-- CASH -->
-    <div class="card-wrapper">
-        <a href="cash.html" class="card">Cash Summary</a>
-
-        <div class="scheme-chip">
-            <span class="label">newly added</span>
-        </div>
-    </div>
-</div>
 </div>
 
-<!-- INTEREST -->
-<div class="section">
-    <div class="header-row">
-        <div class="title">Latest Interest Table</div>
-        <div class="chip" onclick="location.href='interest.html'">View</div>
-    </div>
-    <div class="ubtitle">Last updated on 15-06-2026</div>
-</div>
 
-<!-- FEEDBACK -->
-<div class="section">
-    <div class="header-row">
-        <div class="title">Feedback</div>
-        <div class="chip" onclick="location.href='feedback.html'">Send</div>
-    </div>
-</div>
-
-<!-- CHANGELOGS-->
-<div class="section">
-    <div class="banner">
-        <div class="title">Changelogs</div>
-        <div class="ubtitle">
-            - 'Esc' for back, 'Delete' for reset, 'Enter' for calculate <br>
-            - Added above keyboard funtions for desktop url<br>
-            - Added PDF export for results<br>
-- Added auto interest rate, and auto TDS calculations<br>
-- Crafted with ♡ by Bhaskar Mondal
-        </div>
-    </div>
-</div>
-
-<!-- LINKS -->
-<div class="section">
-    <div class="header-row">
-        <div class="title">WBGB HRMS</div>
-        <div class="chip" onclick="window.open('https://hrms.wbgb.bank.in:7506/WBGB/Login.aspx','_blank')">Link</div>
-    </div>
-</div>
+<!-- SUMMARY -->
 
 <div class="section">
-    <div class="header-row">
-        <div class="title">WBGB Circular</div>
-        <div class="chip" onclick="window.open('https://drive.google.com/drive/folders/1fTRfM4CqUoirLGzzQ8wpscdkHzXGnoaH','_blank')">Link</div>
-    </div>
+
+<div class="surface">
+
+<div class="summary-header">
+
+<div>
+
+<div class="title">
+Cash Summary
 </div>
+
+<div class="ubtitle">
+<span id="todayDate"></span>
+</div>
+
+</div>
+
+<div class="chip">
+Daily Cash
+</div>
+
+</div>
+
+
+<div class="summary-row">
+
+<label>Last Day's Balance</label>
+
+<input
+id="lastBalance"
+type="number"
+placeholder="Enter value"
+inputmode="numeric">
+
+</div>
+
+
+<div class="summary-row">
+
+<label>Received Today</label>
+
+<input
+id="receivedToday"
+class="output"
+type="text"
+value=""
+readonly>
+
+</div>
+
+
+<div class="summary-row">
+
+<label>Total</label>
+
+<input
+id="totalCash"
+type="number"
+placeholder="Enter value"
+inputmode="numeric">
+
+</div>
+
+
+<div class="summary-row">
+
+<label>Paid Today</label>
+
+<input
+id="paidToday"
+class="output"
+type="text"
+value=""
+readonly>
+
+</div>
+
+
+<div class="summary-row balance">
+
+<label>Balance</label>
+
+<input
+id="balance"
+class="output total-output"
+type="text"
+value=""
+readonly>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- DENOMINATION -->
 
 <div class="section">
-    <div class="header-row">
-        <div class="title">WBGB Official Website</div>
-        <div class="chip" onclick="window.open('https://www.wbgb.bank.in/','_blank')">Link</div>
-    </div>
+
+<div class="surface">
+
+<div class="title">
+
+
 </div>
 
-<!-- MODAL -->
-<div id="schemeModal" class="modal-home">
-    <div class="modal-box-home" id="schemeList"></div>
+
+<div class="note-row">
+
+<input id="n500" type="number" inputmode="numeric">
+
+<span>×</span>
+
+<span>₹500</span>
+
+<span>=</span>
+
+<div id="a500" class="amount">₹0</div>
+
 </div>
 
-<script src="script/script.js"></script>
 
-<script>
+<div class="note-row">
 
-const schemeData = {
+<input id="n200" type="number" inputmode="numeric">
 
-    RIDC: [
-        "<strong>TD001</strong> General",
-        "<strong>TD002</strong> Staff",
-        "<strong>TD003</strong> Senior Citizen",
-        "<strong>TD004</strong> Ex-Staff Senior Citizen"
-    ],
+<span>×</span>
 
-    MIDR: [
-        "<strong>FD001</strong> General",
-        "<strong>FD002</strong> Staff",
-        "<strong>FD003</strong> Senior Citizen",
-        "<strong>FD004</strong> Ex-Staff Senior Citizen"
-    ],
+<span>₹200</span>
 
-    RD: [
-        "<strong>RDNEW</strong> General",
-        "<strong>RDNST</strong> Staff",
-        "<strong>RDSCP</strong> Senior Citizen",
-        "<strong>RDSTS</strong> Ex-Staff Senior Citizen"
-    ]
-};
+<span>=</span>
 
-function openScheme(type){
+<div id="a200" class="amount">₹0</div>
 
-    let html = "";
+</div>
 
-    schemeData[type].forEach(val => {
-        html += `<div class="option" onclick="closeScheme()">${val}</div>`;
-    });
 
-    document.getElementById("schemeList").innerHTML = html;
+<div class="note-row">
 
-    schemeModal.style.display = "flex";
-}
+<input id="n100" type="number" inputmode="numeric">
 
-function closeScheme(){
-    schemeModal.style.display = "none";
-}
+<span>×</span>
 
-/* CLOSE ON OUTSIDE TAP */
-schemeModal.onclick = function(e){
-    if(e.target.id === "schemeModal"){
-        closeScheme();
-    }
-};
+<span>₹100</span>
 
-</script>
+<span>=</span>
+
+<div id="a100" class="amount">₹0</div>
+
+</div>
+
+
+<div class="note-row">
+
+<input id="n50" type="number" inputmode="numeric">
+
+<span>×</span>
+
+<span>₹50</span>
+
+<span>=</span>
+
+<div id="a50" class="amount">₹0</div>
+
+</div>
+
+
+<div class="note-row">
+
+<input id="n20" type="number" inputmode="numeric">
+
+<span>×</span>
+
+<span>₹20</span>
+
+<span>=</span>
+
+<div id="a20" class="amount">₹0</div>
+
+</div>
+
+
+<div class="note-row">
+
+<input id="n10" type="number" inputmode="numeric">
+
+<span>×</span>
+
+<span>₹10</span>
+
+<span>=</span>
+
+<div id="a10" class="amount">₹0</div>
+
+</div>
+
+
+<div class="coin-row">
+
+<label>Coins</label>
+
+<input
+id="coins"
+type="number"
+placeholder=""
+inputmode="numeric">
+
+</div>
+
+
+<div class="grand-row">
+
+<span>
+
+Grand Total
+
+</span>
+
+<input
+id="grandTotal"
+class="output total-output"
+type="text"
+value="₹0"
+readonly>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- WORDS -->
+
+<div class="section">
+
+<div class="surface">
+
+<div class="title">
+
+Amount in Words
+
+</div>
+
+<div
+id="amountWords"
+class="words">
+
+Zero Rupees Only
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- RESET -->
+
+<div class="section">
+
+<button
+class="btn outline"
+id="resetBtn">
+
+Reset
+
+</button>
+
+</div>
+
+<script src="script/cash-summary.js"></script>
 
 </body>
+
 </html>
