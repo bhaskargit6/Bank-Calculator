@@ -267,6 +267,20 @@ window.addEventListener("load",()=>{
 
 });
 
+$("coins").addEventListener("keydown", function(e){
+
+    if(e.key === "Enter"){
+
+        e.preventDefault();
+
+        $("lastBalance").focus();
+
+        $("lastBalance").select();
+
+    }
+
+});
+
 // ======================================
 // CASH SUMMARY
 // Part 3
