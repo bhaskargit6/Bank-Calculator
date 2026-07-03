@@ -1,3 +1,37 @@
+// ----------------------------
+// SAVE DATA
+// ----------------------------
+
+function saveData(){
+
+    document.querySelectorAll("input").forEach(input=>{
+
+        localStorage.setItem(input.id, input.value);
+
+    });
+
+}
+
+// ----------------------------
+// LOAD DATA
+// ----------------------------
+
+function loadData(){
+
+    document.querySelectorAll("input").forEach(input=>{
+
+        const value = localStorage.getItem(input.id);
+
+        if(value !== null){
+
+            input.value = value;
+
+        }
+
+    });
+
+}
+
 // ======================================
 // CASH SUMMARY
 // Part 1
