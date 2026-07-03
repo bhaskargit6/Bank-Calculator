@@ -1,17 +1,3 @@
-window.onload = function(){
-
-    loadDate();
-
-    calculate();
-
-    const firstNote = document.getElementById("n500");
-
-    firstNote.focus();
-
-    firstNote.click();
-
-};
-
 // ======================================
 // CASH SUMMARY
 // Part 1
@@ -277,7 +263,7 @@ window.addEventListener("load",()=>{
 
     calculate();
 
-    $("lastBalance").focus();
+    $("n500").focus();
 
 });
 
