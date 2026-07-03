@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cash Summary</title>
+
+<link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="style/cash-summary.css">
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<div class="back" onclick="history.back()">
+←
+</div>
+
+
+</div>
+
+
+<!-- SUMMARY -->
+
+<div class="section">
+
+<div class="surface">
+
+<div class="summary-header">
+
+<div>
+
+<div class="title">
+Cash Summary
+</div>
+
+<div class="ubtitle">
+<span id="todayDate"></span>
+</div>
+
+</div>
+
+<div class="chip">
+Daily Cash
+</div>
+
+</div>
+
+
+<div class="summary-row">
+
+<label>Last Day's Balance</label>
+
+<input
+id="lastBalance"
+type="number"
+placeholder="Enter value"
+inputmode="numeric">
+
+</div>
+
+
+<div class="summary-row">
+
+<label>Received Today</label>
+
+<input
+id="receivedToday"
+class="output"
+type="text"
+value=""
+readonly>
+
+</div>
+
+
+<div class="summary-row">
+
+<label>Total</label>
+
+<input
+id="totalCash"
+type="number"
+placeholder="Enter value"
+inputmode="numeric">
+
+</div>
+
+
+<div class="summary-row">
+
+<label>Paid Today</label>
+
+<input
+id="paidToday"
+class="output"
+type="text"
+value=""
+readonly>
+
+</div>
+
+
+<div class="summary-row balance">
+
+<label>Balance</label>
+
+<input
+id="balance"
+class="output total-output"
+type="text"
+value=""
+readonly>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- DENOMINATION -->
+
+<div class="section">
+
+<div class="surface">
+
+<div class="title">
+
+
+</div>
+
+
+<div class="note-row">
+
+<input id="n500" type="number" inputmode="numeric">
+
+<span>×</span>
+
+<span>₹500</span>
+
+<span>=</span>
+
+<div id="a500" class="amount">₹0</div>
+
+</div>
+
+
+<div class="note-row">
+
+<input id="n200" type="number" inputmode="numeric">
+
+<span>×</span>
+
+<span>₹200</span>
+
+<span>=</span>
+
+<div id="a200" class="amount">₹0</div>
+
+</div>
+
+
+<div class="note-row">
+
+<input id="n100" type="number" inputmode="numeric">
+
+<span>×</span>
+
+<span>₹100</span>
+
+<span>=</span>
+
+<div id="a100" class="amount">₹0</div>
+
+</div>
+
+
+<div class="note-row">
+
+<input id="n50" type="number" inputmode="numeric">
+
+<span>×</span>
+
+<span>₹50</span>
+
+<span>=</span>
+
+<div id="a50" class="amount">₹0</div>
+
+</div>
+
+
+<div class="note-row">
+
+<input id="n20" type="number" inputmode="numeric">
+
+<span>×</span>
+
+<span>₹20</span>
+
+<span>=</span>
+
+<div id="a20" class="amount">₹0</div>
+
+</div>
+
+
+<div class="note-row">
+
+<input id="n10" type="number" inputmode="numeric">
+
+<span>×</span>
+
+<span>₹10</span>
+
+<span>=</span>
+
+<div id="a10" class="amount">₹0</div>
+
+</div>
+
+
+<div class="coin-row">
+
+<label>Coins</label>
+
+<input
+id="coins"
+type="number"
+placeholder=""
+inputmode="numeric">
+
+</div>
+
+
+<div class="grand-row">
+
+<span>
+
+Grand Total
+
+</span>
+
+<input
+id="grandTotal"
+class="output total-output"
+type="text"
+value="₹0"
+readonly>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- WORDS -->
+
+<div class="section">
+
+<div class="surface">
+
+<div class="title">
+
+Amount in Words
+
+</div>
+
+<div
+id="amountWords"
+class="words">
+
+Zero Rupees Only
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- RESET -->
+
+<div class="section">
+
+<button
+class="btn outline"
+id="resetBtn">
+
+Reset
+
+</button>
+
+</div>
+
+<script src="script/cash-summary.js"></script>
+
+</body>
+
+</html>
