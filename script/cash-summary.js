@@ -190,7 +190,6 @@ fields.forEach(id=>{
         }
 
         calculate();
-        saveData();
 
     });
 
