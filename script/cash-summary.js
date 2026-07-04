@@ -1,37 +1,3 @@
-// ----------------------------
-// SAVE DATA
-// ----------------------------
-
-function saveData(){
-
-    document.querySelectorAll("input").forEach(input=>{
-
-        localStorage.setItem(input.id, input.value);
-
-    });
-
-}
-
-// ----------------------------
-// LOAD DATA
-// ----------------------------
-
-function loadData(){
-
-    document.querySelectorAll("input").forEach(input=>{
-
-        const value = localStorage.getItem(input.id);
-
-        if(value !== null){
-
-            input.value = value;
-
-        }
-
-    });
-
-}
-
 // ======================================
 // CASH SUMMARY
 // Part 1
@@ -295,8 +261,6 @@ $("resetBtn").addEventListener(
 window.addEventListener("load",()=>{
 
     loadDate();
-    loadData();
-
     calculate();
 
     $("n500").focus();
@@ -388,7 +352,7 @@ function numberToWords(num){
     num = Math.floor(num);
 
     if(num === 0)
-        return "Zero Only";
+        return "‎ ";
 
     let words = "";
 
