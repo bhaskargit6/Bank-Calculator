@@ -244,7 +244,6 @@ function resetCashSummary(){
     $("n500").focus();
 
 }
-localStorage.clear();
 
 $("resetBtn").addEventListener(
 
@@ -261,6 +260,7 @@ $("resetBtn").addEventListener(
 window.addEventListener("load",()=>{
 
     loadDate();
+
     calculate();
 
     $("n500").focus();
@@ -352,7 +352,7 @@ function numberToWords(num){
     num = Math.floor(num);
 
     if(num === 0)
-        return "‎ ";
+        return "Zero Only";
 
     let words = "";
 
