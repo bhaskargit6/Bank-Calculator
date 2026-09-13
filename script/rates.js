@@ -26,7 +26,7 @@ function getRate(days){
     let slab = table.find(r => days>=r.min && days<=r.max);
     if(!slab) return null;
     let r = senior==="yes"?slab.s:slab.g;
-    if(staff==="yes") r += 1.00;
+    if(staff==="yes" || days >= 365) r += 1.00;
     let amountEl = document.getElementById("amount");
     let amt = amountEl ? Number(amountEl.value) : 0;
     if(amt >= 10000000){ 
