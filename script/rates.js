@@ -52,7 +52,7 @@ function autoRate(){
     let days = getDays(d, uEl.value);
 // 365 days or above → Staff Yes
     if(days <= 364){
-        staff = "yes";
+        staff = "no";
         setStaff("no");
     }
     let slab = table.find(r=>days>=r.min && days<=r.max);
